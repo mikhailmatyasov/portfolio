@@ -1,0 +1,50 @@
+@import "../../../styles/colors.scss";
+@import "~src/styles/mobile";
+
+.camera-item {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: $input-text-color;
+    margin-bottom: 20px;
+
+    &.camera-info {
+        border-top: 1px solid #EBEBEF;
+        padding: 20px 0;
+        margin-bottom: 0;
+    }
+
+    a {
+        color: #367BF5;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 18px;
+        margin-right: 16px;
+
+        &.roi {
+            border: 1px solid #367BF5;
+            box-sizing: border-box;
+            border-radius: 5px;
+            padding: 2px 8px;
+            font-size: 14px;
+            margin-right: 0;
+        }
+    }
+
+    .mat-icon {
+        cursor: pointer;
+        margin: 0 20px;
+        color: #367BF5;
+    }
+
+    app-icon-trash {
+        color: #EA3D2F;
+    }
+}
+
+.actions {
+    @include mobile() {
+        margin-top: 10px;
+    }
+}

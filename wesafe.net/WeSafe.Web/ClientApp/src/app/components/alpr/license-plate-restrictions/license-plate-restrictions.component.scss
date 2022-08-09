@@ -1,0 +1,50 @@
+@import "../../../../styles/colors.scss";
+
+.events {
+    background: #FFFFFF;
+    border: 1px solid #F1F3F4;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 16px 23px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: $input-text-color;
+    margin-bottom: 20px;
+}
+
+.event {
+    border-bottom: 1px solid #ebebeb;
+}
+
+tr {
+    display: flex;
+}
+
+thead tr {
+    margin-bottom: 20px;
+}
+
+th, td {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.hint {
+    font-family: Roboto-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    color: #33325C;
+    mix-blend-mode: normal;
+    opacity: 0.6;
+    margin-left: 14px;
+    margin-top: 4px;
+}

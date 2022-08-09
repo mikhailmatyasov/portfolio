@@ -1,0 +1,51 @@
+@import "~src/styles/mobile";
+
+.nav-header {
+    background-color: #33325c;
+
+    &__container {
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+
+        @include mobile() {
+            min-height: 50px;
+        }
+    }
+}
+
+.nav-header__logo {
+    background-color: transparent;
+
+    > a {
+        display: block;
+        line-height: 0;
+
+        > img {
+            @include mobile() {
+                width: 50%;
+            }
+        }
+    }
+}
+
+.nav-header__remaining-space {
+    flex: 1 1 auto;
+}
+
+#admin-panel {
+    ul {
+        display: flex;
+        list-style-type: none;
+
+        li {
+            padding: 5px 10px;
+            background-color: #ef822d;
+            border-radius: 4px;
+
+            a {
+                color: #fff !important;
+            }
+        }
+    }
+}

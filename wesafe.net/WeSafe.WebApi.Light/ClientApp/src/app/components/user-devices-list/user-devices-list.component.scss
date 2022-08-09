@@ -1,0 +1,22 @@
+.wrapper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    max-width: 1680px;
+}
+
+table {
+    margin-top: 32px;
+    min-width: 800px;
+}
+
+.table-container {
+    overflow: auto;
+}
+
+.cell:not(:first-child) {
+    padding-left: 4px;
+}
+
+.cell:not(:last-child) {
+    padding-right: 4px;
+}

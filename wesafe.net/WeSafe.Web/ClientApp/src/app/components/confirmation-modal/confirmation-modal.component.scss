@@ -1,0 +1,29 @@
+button.action-button {
+    background-color: transparent !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+    text-align: center !important;
+    letter-spacing: 0.75px !important;
+    text-transform: uppercase !important;
+    color: #33325C !important;
+    border: none !important;
+    outline: none !important;
+    margin-top: 24px;
+    padding: 0 !important;
+    cursor:pointer;
+
+    &.action-button-yes {
+        color: #EF822D !important;
+        margin-left:19px;
+    }
+}
+::ng-deep .mat-dialog-container {
+    width: 344px !important;
+}
+
+span{
+    font-family:Roboto-Regular !important;
+    font-size:20px;
+}

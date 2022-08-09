@@ -1,0 +1,53 @@
+<mat-dialog-content>
+    <div [formGroup]="formGroup">
+        <div class="d-flex justify-content-between">
+            <div>
+                <span class="title">Edit Device name</span>
+            </div>
+            <div class="close-btn">
+                <mat-icon (click)="onNoClick()">close</mat-icon>
+            </div>
+        </div>
+        <input matInput
+               formControlName="deviceName"
+               class="input-box"
+               type="text"
+               placeholder="Type new name"
+               autofocus />
+
+        <div style="margin-top: 24px;">
+            <span class="title">Change Device type</span>
+        </div>
+
+        <mat-select class="col-sm-10" [(ngModel)]="selectedDeviceType"
+                    formControlName="deviceTypes"
+                    placeholder="Device type"
+                    style="padding-right: 15px; padding-left: 15px; box-sizing: content-box;">
+            <mat-option [value]="type.id" *ngFor="let type of deviceTypes">
+                {{type.value}}
+            </mat-option>
+        </mat-select>
+        <div class="hint">Changing device type will take a time.</div>
+
+        <div style="margin-top: 24px;">
+            <span class="title">Change Device time zone</span>
+        </div>
+
+        <input matInput
+               formControlName="timeZone"
+               class="input-box"
+               type="text"
+               placeholder="Type new time zone"
+               [matAutocomplete]="auto" />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option [value]="tz.id" *ngFor="let tz of filteredTimeZones | async">
+                {{tz.name}}
+            </mat-option>
+        </mat-autocomplete>
+
+        <button mat-raised-button [mat-dialog-close]="formGroup.value" [disabled]="formGroup.invalid" class="button button-text">
+            Save
+        </button>
+    </div>
+
+</mat-dialog-content>

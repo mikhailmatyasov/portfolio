@@ -1,0 +1,29 @@
+@import "~src/styles/colors";
+
+.menu-container {
+    max-width: 1680px;
+}
+
+.menu {
+    display: flex;
+    margin: 8px 0;
+    padding: 0;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+
+.menu-item {
+    padding: 4px 16px;
+    white-space: nowrap;
+    font-size: 18px;
+}
+
+.menu-link {
+    color: $input-text-color;
+}
+
+.menu-item.active {
+    .menu-link {
+        color: $button-color;
+    }
+}

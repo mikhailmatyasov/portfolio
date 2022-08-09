@@ -1,0 +1,39 @@
+<nav-header></nav-header>
+<nav class="container-fluid menu-container">
+    <ul class="menu" *ngIf="authService.isAuthenticated()">
+        <li class="menu-item" routerLinkActive="active" *ngIf="authService.isUser() && !authService.isDemo()">
+            <a class="menu-link" routerLink="devices">Devices</a>
+        </li>
+        <li class="menu-item" routerLinkActive="active" *ngIf="authService.isUser() && authService.isDemo()">
+            <a class="menu-link" routerLink="demo">Cameras</a>
+        </li>
+        <li class="menu-item" routerLinkActive="active" *ngIf="authService.isUser() && authService.isDemo()">
+            <a class="menu-link" routerLink="demo/events">Events</a>
+        </li>
+        <li class="menu-item" routerLinkActive="active" *ngIf="authService.isAdministrator() || authService.isOperator()">
+            <a class="menu-link" routerLink="devices">Devices</a>
+        </li>
+        <li class="menu-item" routerLinkActive="active" *ngIf="authService.isAdministrator() || authService.isOperator()">
+            <a class="menu-link" routerLink="clients">Clients</a>
+        </li>
+        <li class="menu-item" routerLinkActive="active" *ngIf="authService.isAdministrator()">
+            <a class="menu-link" routerLink="users">Users</a>
+        </li>
+        <li class="menu-item" routerLinkActive="active" *ngIf="authService.isAdministrator()">
+            <a class="menu-link" routerLink="ips">Permitted Ips</a>
+        </li>
+        <li class="menu-item" routerLinkActive="active" *ngIf="authService.isAdministrator()">
+            <a class="menu-link" routerLink="deviceslogslist">Devices logs</a>
+        </li>
+        <li class="menu-item" routerLinkActive="active" *ngIf="authService.isAdministrator()">
+            <a class="menu-link" routerLink="unhandledExceptions">Unhandled exceptions</a>
+        </li>
+        <li class="menu-item" routerLinkActive="active" *ngIf="authService.isAdministrator()">
+            <a class="menu-link" routerLink="emails">Emails</a>
+        </li>
+        <li class="menu-item" routerLinkActive="active" *ngIf="authService.isAdministrator()">
+            <a class="menu-link" routerLink="recognitionobjects">Recognition objects</a>
+        </li>
+    </ul>
+</nav>
+<router-outlet></router-outlet>

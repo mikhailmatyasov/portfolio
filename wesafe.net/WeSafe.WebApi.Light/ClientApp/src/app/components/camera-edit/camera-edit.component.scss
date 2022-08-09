@@ -1,0 +1,145 @@
+@import "../../../styles/colors.scss";
+@import "~src/styles/mobile";
+
+$border-color: #e0e0e0;
+$bg-color-hover: #eee;
+$bg-color-checked: #1BC649;
+
+.scheduler {
+    overflow: auto;
+}
+
+.scheduler-wrapper {
+    margin-top: 25px;
+    overflow: auto;
+}
+
+.scheduler-text {
+    margin-bottom: 8px;
+}
+
+.scheduler-row {
+    display: flex;
+    align-items: center;
+    border: 1px solid $border-color;
+
+}
+
+.scheduler-col {
+    min-width: 32px;
+    flex: 1 1 100%;
+    box-sizing: border-box;
+}
+
+.scheduler-col_weekday {
+    width: 42px;
+    flex: none;
+    cursor: pointer;
+
+    &:first-child {
+        font-family: Roboto-Regular;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        /* identical to box height */
+        text-align: center;
+        /* Blue brand */
+        color: #33325C;
+    }
+}
+
+.scheduler-col_hour {
+    height: 32px;
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+
+    &:hover {
+        background-color: $bg-color-hover;
+    }
+
+    &.checked {
+        background-color: $bg-color-checked;
+    }
+}
+
+.scheduler-col_hour-title {
+    padding: 4px;
+    border-left: 1px solid $border-color;
+    overflow: hidden;
+    font-size: small;
+    cursor: pointer;
+
+    &:last-child {
+        border-right: 1px solid $border-color;
+    }
+}
+
+.wrapper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    max-width: 1680px;
+}
+
+.info {
+    margin: 26px 0;
+    background-color: #fff;
+    padding: 24px;
+    border: 1px solid #F1F3F4;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: $input-text-color;
+
+    h2 {
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28px;
+        padding: 0;
+        margin: 0;
+        margin-right: 19px;
+
+        .mat-icon {
+            cursor: pointer;
+            margin-left: 8px;
+            position: relative;
+            top: 3px;
+        }
+    }
+}
+
+.common-states {
+    margin: 0px 19px;
+
+    & > div {
+        margin: 0px 4px;
+    }
+}
+
+.hint {
+    font-family: Roboto-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    color: #33325C;
+    mix-blend-mode: normal;
+    opacity: 0.6;
+    margin-left: 14px;
+    margin-top: 4px;
+}
+
+.cancel {
+    border: 1px solid #33325C;
+    background-color: $body-color;
+}
+
+form.table-container .flex-grow-1 {
+    width: 100%;
+}
+
+.top-offset {
+    @include mobile() {
+        margin-top: 8px;
+    }
+}

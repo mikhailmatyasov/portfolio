@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WeSafe.Nano.DAL\WeSafe.Nano.DAL.csproj" />
+    <ProjectReference Include="..\WeSafe.Nano.Services.Abstraction\WeSafe.Nano.Services.Abstraction.csproj" />
+    <ProjectReference Include="..\WeSafe.Services.Client\WeSafe.Services.Client.csproj" />
+    <ProjectReference Include="..\WeSafe.Services\WeSafe.Services.csproj" />
+  </ItemGroup>
+
+</Project>

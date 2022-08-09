@@ -1,0 +1,31 @@
+<mat-dialog-content>
+    <div [formGroup]="formGroup">
+        <div class="d-flex justify-content-between">
+            <div>
+                <span class="title">Connect camera</span>
+            </div>
+            <div class="close-btn">
+                <mat-icon (click)="onNoClick()">close</mat-icon>
+            </div>
+        </div>
+        <input matInput
+               formControlName="login"
+               class="input-box"
+               type="text"
+               placeholder="Type camera login"
+               autofocus
+        />
+
+        <input matInput
+               formControlName="password"
+               class="input-box"
+               type="password"
+               placeholder="Type password"
+        />
+    </div>
+    <div>
+        <button mat-raised-button [mat-dialog-close]="formGroup.value" class="button button-text" [disabled]="formGroup.invalid">
+            Connect
+        </button>
+    </div>
+</mat-dialog-content>

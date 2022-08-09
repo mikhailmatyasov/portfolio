@@ -1,0 +1,9 @@
+<header class="nav-header">
+    <div class="container-fluid nav-header__container">
+        <div class="nav-header__logo">
+            <a routerLink="/"><img src="./assets/images/WeSafe.jpg" alt="WeSafe"/></a>
+        </div>
+        <div class="nav-header__remaining-space"></div>
+        <user-info *ngIf="authService.isAuthenticated()"></user-info>
+    </div>
+</header>

@@ -1,0 +1,35 @@
+<mat-dialog-content>
+    <div [formGroup]="formGroup">
+        <div class="d-flex justify-content-between">
+            <div>
+                <span class="title">Add Telegram user</span>
+            </div>
+            <div class="close-btn">
+                <mat-icon (click)="onNoClick()">close</mat-icon>
+            </div>
+        </div>
+        <div>
+            <input matInput
+                   formControlName="name"
+                   class="input-box"
+                   type="text"
+                   placeholder="User name"
+                   autofocus />
+        </div>
+
+        <div>
+            <input matInput
+                   formControlName="phone"
+                   class="input-box"
+                   type="text"
+                   placeholder="Phone"
+                   autofocus />
+        </div>
+
+        <button mat-raised-button [mat-dialog-close]="formGroup.value" [disabled]="formGroup.invalid" class="button button-text">
+            Save
+        </button>
+    </div>
+
+</mat-dialog-content>
+

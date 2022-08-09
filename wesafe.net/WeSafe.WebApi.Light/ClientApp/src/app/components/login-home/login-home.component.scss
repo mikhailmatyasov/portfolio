@@ -1,0 +1,82 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/mobile.scss";
+
+.home {
+    .logo {
+        padding-top: 34px;
+        padding-bottom: 33px;
+    }
+
+    .camera-logo {
+        padding-top: 43px;
+        float: right;
+    }
+
+    .form-container {
+        margin-top: 191px;
+        margin-left: 70px;
+        @include m-clean-margin-padding()
+    }
+}
+.text {
+    width: 328px;
+
+    @include mobile {
+        width: auto;
+    }
+}
+
+input {
+    background-color: $body-color;
+}
+
+p {
+    font-family: Avenir-Medium;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    color: #33325C;
+}
+
+.heading {
+    font-weight: 800;
+}
+
+button {
+    width: 152px;
+}
+
+.registration-form {
+    width: 328px;
+    @include mobile {
+        width: auto;
+    }
+}
+
+.col-6 {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+a {
+    color: $button-color;
+    cursor:pointer;
+}
+
+h6 .hint {
+    font-family: Avenir-Medium;
+    font-size: 14px;
+}
+
+.error {
+    color: #EB5757;
+    font-family: Roboto;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.154px;
+}
+
+/// MOBILE
+
+
+/// END MOBILE

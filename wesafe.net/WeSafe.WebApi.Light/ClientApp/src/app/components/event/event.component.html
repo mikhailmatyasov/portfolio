@@ -1,0 +1,9 @@
+<div class="event" *ngIf="event">
+    <img class="event__image" [src]="event.entries[imageIndex].imageUrl"
+         (click)="imageClick()" *ngIf="event.entries.length > 0" />
+    <div class="event__text">
+        <div class="event__message">{{event.message}}</div>
+        <div class="event__time">{{event.time | date:'short'}}</div>
+    </div>
+    <button (click)="getEventVideo()" style="float: right">Open video</button>
+</div>

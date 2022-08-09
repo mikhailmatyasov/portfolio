@@ -1,0 +1,21 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+
+@import "~src/mixins/button";
+
+.btn {
+    display: inline-block;
+
+    @include button;
+}
+
+.device-list-option {
+    padding-top: 15px;
+}
+
+::ng-deep mat-paginator button {
+    color: inherit !important;
+}

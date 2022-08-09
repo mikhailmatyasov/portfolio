@@ -1,0 +1,38 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:56760",
+      "sslPort": 44383
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "IncludeIpChecking": "Disabled",
+        "GOOGLE_APPLICATION_CREDENTIALS": "wesafetest-a497d-firebase-adminsdk-vr68w-48206755bd.json",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "WeSafe.Web": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "IncludeIpChecking": "Disabled",
+        "GOOGLE_APPLICATION_CREDENTIALS": "wesafetest-a497d-firebase-adminsdk-vr68w-48206755bd.json",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+    },
+    "Docker (1)": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  }
+}

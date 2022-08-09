@@ -1,0 +1,50 @@
+<div class="events">
+    <div class="title">License plate Restrictions</div>
+    <div class="card-body">
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <mat-select [(ngModel)]="selectedTypeId"
+                            name="type"
+                            placeholder="License type">
+                    <mat-option [value]="type.id" *ngFor="let type of licensePlateTypes">
+                        {{type.value}}
+                    </mat-option>
+                </mat-select>
+                <div class="hint">License type</div>
+            </div>
+            <div class="col-sm-2">
+                <input matInput
+                       style="margin-top: 18px;"
+                       #license="ngModel"
+                       placeholder="License plate"
+                       [required]="true"
+                       [maxLength]="10"
+                       [(ngModel)]="licensePlate"
+                       name="license"
+                       type="text"
+                       class="input-box" />
+                <div class="hint">License plate</div>
+            </div>
+            
+
+            <div class="col-sm-2">
+                <button [disabled]="!license.valid" class="btn btn-outline-primary" (click)="add()" style="margin-top: 14px">Add restriction</button>
+            </div>
+        </div>
+
+        <table>
+            <tbody>
+            <tr *ngFor="let row of rows">
+                <td>{{row.licensePlate}}</td>
+                <td>
+                    <span *ngIf="row.licensePlateType == 0">Black list</span>
+                    <span *ngIf="row.licensePlateType == 1">White list</span>
+                </td>
+                <td>
+                    <mat-icon style="cursor: pointer" (click)="delete(row.id)">delete_outline</mat-icon>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

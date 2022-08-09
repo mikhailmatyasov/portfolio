@@ -1,0 +1,68 @@
+<div class="container-lg my-4">
+    <div class="card mb-4" *ngIf="client">
+        <div class="card-body">
+            <h3 class="card-title">Client: {{client.name}}</h3>
+            <p class="card-text" *ngIf="client.info">{{client.info}}</p>
+            <div class="row mb-2 mb-lg-1">
+                <div class="col-sm-2 text-secondary"><strong>Client name</strong></div>
+                <div class="col-sm-10">{{client.name}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-secondary"><strong>Phone</strong></div>
+                <div class="col-sm-4 mb-2 mb-lg-1">{{client.phone}}</div>
+                <div class="col-sm-2 text-secondary"><strong>Created at</strong></div>
+                <div class="col-sm-4 mb-2 mb-lg-1">{{client.createdAt | date:'shortDate'}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-secondary"><strong>Contract number</strong></div>
+                <div class="col-sm-4 mb-2 mb-lg-1">{{client.contractNumber || '-'}}</div>
+                <div class="col-sm-2 text-secondary"><strong>Status</strong></div>
+                <div class="col-sm-4 mb-2 mb-lg-1">
+                    <span class="badge badge-danger mx-1" *ngIf="!client.isActive">Inactive</span>
+                    <span class="badge badge-success mx-1" *ngIf="client.isActive">Active</span>
+                    <span class="badge badge-dark mx-1" *ngIf="client.token">Activated</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-secondary"><strong>Send to WeSafe chat</strong></div>
+                <div class="col-sm-4 mb-2 mb-lg-1">{{client.sendToDevChat ? 'Yes' : 'No'}}</div>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+                <a [routerLink]="['edit']" class="btn btn-primary btn-sm">Edit</a>
+                <button class="btn btn-danger btn-sm" *ngIf="client.isActive" (click)="setActive(false)">Disable</button>
+                <button class="btn btn-success btn-sm" *ngIf="!client.isActive" (click)="setActive(true)">Enable</button>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-4" *ngFor="let device of devices">
+        <div class="card-body">
+            <h3 class="card-title">Device <a [routerLink]="['/admin/devices', device.id]" class="badge badge-primary">Edit</a></h3>
+            <p class="card-text" *ngIf="device.info">{{device.info}}</p>
+            <app-device-details [device]="device"></app-device-details>
+        </div>
+        <div *ngIf="device.cameras && device.cameras.length > 0">
+            <div class="card-body pb-0">
+                <h6 class="card-title">Cameras <span class="badge badge-pill badge-secondary">{{device.cameras.length}}</span></h6>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let camera of device.cameras">
+                    <div class="row">
+                        <div class="col-sm-2">{{camera.cameraName}}</div>
+                        <div class="col-sm-2">IP: {{camera.ip}}</div>
+                        <div class="col-sm-2">Port: {{camera.port}}</div>
+                        <div class="col-sm-2">
+                            <span class="badge badge-danger mx-1" *ngIf="!camera.isActive">Inactive</span>
+                            <span class="badge badge-success mx-1" *ngIf="camera.isActive">Active</span>
+                            <span class="badge badge-light mx-1" *ngIf="camera.roi" title="ROI is set">ROI</span>
+                            <span class="badge badge-success" *ngIf="camera.status === 'ONLINE'">Online</span>
+                            <span class="badge badge-danger" *ngIf="camera.status === 'OFFLINE'">Offline</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <button type="button" class="btn btn-primary" (click)="back()">Back</button>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+version: '3.4'
+
+services:
+  api:
+    build: .
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DB_CONNECTION_STRING=User ID=wesafe;Password=123456;Host=db;Port=5432;Database=wesafe;Pooling=true;
+      - Logging__LogLevel__Default=Warning
+      - Logging__LogLevel__Microsoft=Warning
+    ports:
+      - "8080:80"
+    volumes:
+      - ./logs:/app/logs/
+      - ./records:/app/wwwroot/app/records/
+    depends_on:
+      - db
+  db:
+    image: "postgres:10.9-alpine"
+    environment:
+      POSTGRES_USER: "wesafe"
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: "wesafe"
+#    ports:
+#      - "5444:5432"
+    volumes:
+      - db-data-volume:/var/lib/postgresql/data
+        
+  bot:
+    build:
+        context: .
+        dockerfile: WeSafe.TelegramBot.Console/Dockerfile
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      - Logging__LogLevel__Default=Information
+      - Logging__LogLevel__Microsoft=Information
+    volumes:
+      - ./logs:/app/logs/
+      - ./records:/app/app/records/
+    depends_on:
+      - api
+        
+  monitoring:
+    build:
+        context: .
+        dockerfile: WeSafe.Monitoring.Console/Dockerfile
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      - Logging__LogLevel__Default=Information
+      - Logging__LogLevel__Microsoft=Information
+    volumes:
+      - ./logs:/app/logs/
+    depends_on:
+      - api
+
+  start_dependencies:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - db
+      - api
+    command: db:5432 api:80
+
+volumes:
+  db-data-volume:

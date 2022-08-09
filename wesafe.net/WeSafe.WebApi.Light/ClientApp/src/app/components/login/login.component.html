@@ -1,0 +1,37 @@
+<app-login-home>
+    <div class="text">
+        <p class="heading" style="font-size: 35px">Welcome to WeSafe</p>
+        <p class="heading" style="font-size: 24px; margin-top: 61px; margin-bottom: 0">Sign In</p>
+    </div>
+
+    <div class="input-and-button">
+        <div class="registration-form" [formGroup]="formGroup">
+            <input matInput
+                   style="margin-top: 24px;"
+                   formControlName="userName"
+                   name="wesafelogin"
+                   type="text"
+                   class="input-box"
+                   id="wesafelogin"
+                   placeholder="User Name">
+
+            <input matInput
+                   style="margin-top: 24px;"
+                   formControlName="password"
+                   name="wesafepwd"
+                   type="password"
+                   class="input-box"
+                   id="wesafepwd"
+                   placeholder="Password">
+
+            <div class="float-right">
+                <button [disabled]="formGroup.invalid" mat-raised-button type="submit" class="button button-text login float-right" id="button-addon2" style="margin-top: 24px; margin-bottom: 27px" (click)="submit()">
+                    Sign In
+                </button>
+                <div class="hint float-right" style="margin-top: 0;">
+                    Don't have an account? <a routerLink="/"><strong>Sign Up</strong></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-login-home>

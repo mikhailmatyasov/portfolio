@@ -1,0 +1,21 @@
+
+<mat-dialog-content [formGroup]="formGroup">
+    <div class="d-flex justify-content-between">
+        <div>
+            <span class="title">Bind New Device</span>
+        </div>
+        <div class="close-btn">
+            <mat-icon [mat-dialog-close]>close</mat-icon>
+        </div>
+    </div>
+    <input matInput
+           class="input-box"
+           formControlName="deviceToken"
+           type="text"
+           placeholder="Device Token"/>
+
+    <button mat-raised-button [disabled]="formGroup.invalid" [mat-dialog-close]="formGroup.value.deviceToken" class="button button-text">
+        Bind Device
+    </button>
+
+</mat-dialog-content>

@@ -1,0 +1,19 @@
+<mat-dialog-content>
+    <div class="d-flex justify-content-between">
+        <div>
+            <span class="title">{{data.message}}</span>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button [mat-dialog-close]="null" class="button button-text action-button">
+            {{data.noButtonText.toUpperCase()}}
+        </button>
+        <button [mat-dialog-close]="data" class="button button-text action-button action-button-yes">
+            {{data.yesButtonText.toUpperCase()}}
+        </button>
+    </div>
+
+</mat-dialog-content>
+
+

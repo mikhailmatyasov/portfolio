@@ -1,0 +1,88 @@
+<nav-header></nav-header>
+<div class="table-container">
+    <div class="d-flex back-to">
+        <div class="d-flex" (click)="cancel()" style="cursor:pointer;">
+            <div>
+                <mat-icon>west</mat-icon>
+            </div>
+            <div>
+                Back
+            </div>
+        </div>
+    </div>
+
+    <div class="info d-flex">
+        <div class="d-flex">
+            <div class="d-flex flex-column">
+                <div class="d-flex">
+                    <h2>
+                        <span>Change Profile</span>
+                    </h2>
+                </div>
+                <div class="d-flex" style="margin-top: 31px;">
+                    <div>
+                        <input matInput
+                               #name="ngModel"
+                               placeholder="User name"
+                               [(ngModel)]="model.displayName"
+                               name="name"
+                               type="text"
+                               class="input-box" />
+                    </div>
+                    <div style="margin-left: 32px; margin-top: 22px;">
+                        <mat-checkbox [(ngModel)]="changePwd">
+                            Change Password
+                        </mat-checkbox>
+                    </div>
+
+                </div>
+                <div class="d-flex" *ngIf="changePwd" style="margin-top: 31px;">
+                    <div>
+                        <input matInput
+                               #opwd="ngModel"
+                               placeholder="Old password"
+                               [(ngModel)]="model.oldPassword"
+                               [minLength]="6"
+                               name="opwd"
+                               type="password"
+                               class="input-box" />
+                    </div>
+                    <div style="margin-left: 32px;">
+                        <input matInput
+                               #pwd="ngModel"
+                               placeholder="New password"
+                               [(ngModel)]="model.password"
+                               [minLength]="6"
+                               name="pwd"
+                               type="password"
+                               class="input-box" />
+                    </div>
+                    <div style="margin-left: 32px;">
+                        <input matInput
+                               #cpwd="ngModel"
+                               placeholder="Confirm password"
+                               [(ngModel)]="model.confirmPassword"
+                               [minLength]="6"
+                               name="cpwd"
+                               type="password"
+                               class="input-box" />
+                    </div>
+                </div>
+                <div class="d-flex" *ngIf="changePwd" style="margin-top: 4px;">
+                    <div class="hint">Password must not match old password and must be more than 6 chars.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center" style="margin-top: 32px;">
+        <button mat-raised-button (click)="cancel()" style="border: 1px solid #33325C !important; background-color: #F7F9FA !important; margin-right: 24px; color: #33325C !important; padding: 16px 34px!important;">Cancel</button>
+        <button mat-raised-button (click)="submit()"
+                style="padding: 16px 42px!important;"
+                [disabled]="!model.displayName || (changePwd && (model.password !== model.confirmPassword || model.password === model.oldPassword))">
+            Save
+        </button>
+    </div>
+
+</div>

@@ -1,0 +1,18 @@
+@import "../../../styles/colors.scss";
+
+.back-to {
+    color: $input-text-color;
+
+    & > div:first-child {
+        cursor: pointer;
+
+        &:focus {
+            outline: 0;
+        }
+
+        & > div:last-child {
+            margin-top: 3px;
+            margin-left: 8px;
+        }
+    }
+}

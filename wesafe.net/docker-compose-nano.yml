@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  api:
+    build: registry.gitlab.com/xeltan/wesafe.net/nano:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Logging__LogLevel__Default=Warning
+      - Logging__LogLevel__Microsoft=Warning
+      - PhysicalFileStorage__Root=/app/files
+      - PhysicalFileStorage__RequestPath=/files
+    ports:
+      - "8080:80"
+    volumes:
+      - ./logs:/app/logs/
+      - ./records:/app/files/
+      - ./video:/app/Content/Video/
+    restart: always

@@ -1,0 +1,10 @@
+@import "../../../../../../styles/colors.scss";
+
+mat-select {
+    border: 1px solid $input-border-color;
+    padding-left: 16px;
+    color: $input-text-color;
+    font-size: 16px;
+    margin-top: 18px;
+    padding: 13px;
+}

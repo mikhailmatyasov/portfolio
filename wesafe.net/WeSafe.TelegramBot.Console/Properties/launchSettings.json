@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WeSafe.TelegramBot.NetCore": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

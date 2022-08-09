@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <h2 class="my-4">Devices</h2>
+    <div class="row">
+        <div class="col-sm-2 device-list-option">
+            <input type="text"
+                   placeholder="Search text"
+                   #name="ngModel"
+                   [(ngModel)]="searchText"
+                   class="form-control">
+        </div>
+        <div class="col-sm-2 device-list-option">
+            <select class="form-control" [(ngModel)]="filterBy">
+                <option [ngValue]=0>Device name</option>
+                <option [ngValue]=1>MAC Address</option>
+            </select>
+        </div>
+        <div class="col device-list-option" (click)="filterDevices()">
+            <button type="button" class="btn btn-outline-secondary" style="cursor: pointer;">Filter</button>
+        </div>
+        <div class="col device-list-option" style="flex-grow: 10;">
+            <a routerLink="create" class="btn">Add device</a>
+        </div>
+    </div>
+    <div class="table-responsive-md">
+        <table class="table table-sm my-3">
+            <thead>
+            <tr>
+                <th scope="col">Device name</th>
+                <th scope="col">MAC address</th>
+                <th scope="col">HW version</th>
+                <th scope="col">SW version</th>
+                <th scope="col">Token</th>
+                <th scope="col">Assembling date</th>
+                <th scope="col">Activating date</th>
+                <th scope="col">Activating client</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let device of rows">
+                <td>{{device.name}}</td>
+                <td><a [routerLink]="[device.id]">{{device.macAddress | mask: 'AA:AA:AA:AA:AA:AA'}}</a></td>
+                <td>{{device.hwVersion}}</td>
+                <td>{{device.swVersion}}</td>
+                <td>{{device.token}}</td>
+                <td>{{device.assemblingDate | date:'shortDate'}}</td>
+                <td>{{device.activationDate | date:'shortDate'}}</td>
+                <td>{{device.clientName}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <mat-paginator #paginator
+                   [length]="page.total"
+                   [pageSize]="page.size"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="loadPage($event)">
+    </mat-paginator>
+</div>

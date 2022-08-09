@@ -1,0 +1,7 @@
+<ng-template #errorTemplate let-data>
+    <div class="d-flex">
+        <mat-icon>error</mat-icon>
+        <span>{{data.message}}</span>
+        <mat-icon class="close" (click)="closeError()">close</mat-icon>
+    </div>
+</ng-template>

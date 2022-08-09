@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "WeSafe.Dashboard.WebApi.Proto";
+
+service CameraGrpc {
+	rpc GetCamerasNames(CameraRequest) returns (CameraNamesReponse) {}
+}
+
+message CameraRequest {
+	repeated int32 cameraIds = 1;
+}
+
+
+message CameraNamesReponse {
+	repeated CameraName CamerasNames = 1;
+}
+
+message CameraName{
+	int32 id = 1;
+	string name = 2;
+}

@@ -1,0 +1,42 @@
+@import "~src/styles/mobile";
+@import "~src/styles/colors";
+
+.left-nav {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 200px;
+    bottom: 0;
+    overflow: hidden;
+    background-color: #33325c;
+
+    @include mobile() {
+        top: 50px;
+    }
+}
+
+.menu {
+    list-style-type: none;
+    margin: 60px 0 0;
+    padding: 0;
+}
+
+.menu__item {
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+
+    &.menu__item_active {
+        background-color: $button-color;
+    }
+}
+
+.menu__caption {
+    color: #fff;
+    font-size: 16px;
+    margin-left: 12px;
+}
+
+.menu__item.menu__item_active .menu__caption {
+    font-weight: bold;
+}

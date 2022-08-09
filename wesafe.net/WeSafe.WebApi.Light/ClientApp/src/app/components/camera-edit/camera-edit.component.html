@@ -1,0 +1,260 @@
+<form class="container-fluid wrapper" *ngIf="camera" #form="ngForm">
+
+    <app-back-to [url]="['/devices/', deviceId]" title="Back to Dashboard"></app-back-to>
+
+    <div class="d-flex align-items-end" *ngIf="!create" style="margin-top: 30px;">
+    <span style="font-size: 32px;">
+        {{camera.cameraName}}
+    </span>
+        <div class="d-flex" style="margin-bottom: 7px;">
+            <div style="margin-left: 14px" class="state d-flex justify-content-center align-items-center"
+                 [class.online]="camera.status == 'ONLINE'" [class.offline]="camera.status != 'ONLINE'">
+                <span *ngIf="camera.status">{{camera.status}}</span>
+                <span *ngIf="!camera.status">Offline</span>
+            </div>
+            <div style="position: relative; margin-left: 17px" class="state d-flex justify-content-center align-items-center"
+                 [class.online]="camera.networkStatus == 'ONLINE'" [class.offline]="camera.networkStatus != 'ONLINE'">
+                <span class="network-state">Network state:</span>
+                <span *ngIf="camera.networkStatus">{{camera.networkStatus}}</span>
+                <span *ngIf="!camera.networkStatus">Offline</span>
+            </div>
+        </div>
+    </div>
+    <div class="info">
+        <div class="d-flex flex-column  flex-grow-1">
+            <div class="d-flex">
+                <h2>
+                    <span>General Setting</span>
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <input matInput
+                           style="margin-top: 18px;"
+                           #cameraName="ngModel"
+                           placeholder="Camera name"
+                           [required]="true"
+                           [maxLength]="15"
+                           [(ngModel)]="camera.cameraName"
+                           name="cameraName"
+                           type="text"
+                           class="input-box"/>
+                    <div class="hint">Max 15 chars.</div>
+                </div>
+                <div class="col-sm">
+                    <mat-select [(ngModel)]="selectedVendorId"
+                                (selectionChange)="cameraVendorChanged()"
+                                name="vendor"
+                                placeholder="Camera vendor">
+                        <mat-option [value]="null">(Custom)</mat-option>
+                        <mat-option [value]="vendor.id" *ngFor="let vendor of cameraVendors">
+                            {{vendor.name}}
+                        </mat-option>
+                    </mat-select>
+                    <div class="hint">Select camera vendor</div>
+                </div>
+                <div class="col-sm">
+                    <mat-select [(ngModel)]="camera.cameraTypeId"
+                                (selectionChange)="cameraTypeChanged($event)"
+                                name="cameraType"
+                                placeholder="Camera type">
+                        <mat-option [value]="type.id" *ngFor="let type of cameraTypes">
+                            {{type.name}}
+                        </mat-option>
+                    </mat-select>
+                    <div class="hint">Select camera type</div>
+                </div>
+            </div>
+            <div *ngIf="!selectedVendorId" style="margin-top: 31px;">
+                <div class="d-flex">
+                    <p class="input-box" style="margin-block-end: 0;">RTSP Generator</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm">
+                        <mat-select [(ngModel)]="selectedCameraManufactorId"
+                                    style="margin-top: 15px;"
+                                    (selectionChange)="cameraManufactorChanged()"
+                                    name="manufactor"
+                                    placeholder="Manufactor">
+                            <mat-option [value]="manufactor.id" *ngFor="let manufactor of cameraManufactors">
+                                {{manufactor.manufactor}}
+                            </mat-option>
+                        </mat-select>
+                        <div class="hint">Select camera manufactor</div>
+                    </div>
+                    <div *ngIf="selectedCameraMarkId" class="col-sm">
+                        <mat-select [(ngModel)]="selectedCameraMarkId"
+                                    style="margin-top: 15px;"
+                                    (selectionChange)="cameraMarkChanged()"
+                                    name="mark"
+                                    placeholder="Mark">
+                            <mat-option [value]="mark.id" *ngFor="let mark of getSelectedManufactor()['cameraMarks']">
+                                {{mark.model}}
+                            </mat-option>
+                        </mat-select>
+                        <div class="hint">Select camera mark</div>
+                    </div>
+                    <div *ngIf="selecredCameraRtspPathId" class="col-sm">
+                        <mat-select [(ngModel)]="selecredCameraRtspPathId"
+                                    style="margin-top: 15px;"
+                                    (selectionChange)="rtspPathChanged()"
+                                    name="rtspPathSelect"
+                                    placeholder="Rtsp path">
+                            <mat-option [value]="rtsp.id" *ngFor="let rtsp of getSelectedMark()['rtspPaths']">
+                                {{rtsp.path}}
+                            </mat-option>
+                        </mat-select>
+                        <div class="hint">Select rtsp path</div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="flex-grow-1">
+                    <input matInput
+                           style="margin-top: 31px"
+                           #rtcp="ngModel"
+                           placeholder="RTSP"
+                           [required]="true"
+                           [disabled]="camera.cameraTypeId"
+                           [(ngModel)]="camera.specificRtcpConnectionString"
+                           name="rtcp"
+                           type="text"
+                           class="input-box"/>
+                    <div class="hint" *ngIf="camera.cameraTypeId">Set camera vendor and type to 'Custom' to change RTSP field manually.
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 31px;">
+                <div class="col-sm-4">
+                    <input matInput
+                           #ip="ngModel"
+                           placeholder="IP address"
+                           (change)="cameraChanged()"
+                           [(ngModel)]="camera.ip"
+                           name="ip"
+                           mask="IP"
+                           [dropSpecialCharacters]="false"
+                           [required]="true"
+                           type="text"
+                           class="input-box"/>
+                    <div class="hint">Use valid IP address in 'NNN.NNN.NNN.NNN' format.</div>
+                </div>
+                <div class="col-sm-4 top-offset">
+                    <input matInput
+                           #port="ngModel"
+                           placeholder="Port"
+                           [required]="true"
+                           (change)="cameraChanged()"
+                           [(ngModel)]="camera.port"
+                           name="port"
+                           mask="99999"
+                           type="text"
+                           class="input-box"/>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 31px;">
+                <div class="col-sm-4">
+                    <input matInput
+                           #login="ngModel"
+                           placeholder="Login"
+                           [required]="true"
+                           (change)="cameraChanged()"
+                           [(ngModel)]="camera.login"
+                           name="login"
+                           type="text"
+                           class="input-box"/>
+                </div>
+                <div class="col-sm-4 top-offset">
+                    <input matInput
+                           #pwd="ngModel"
+                           placeholder="Password"
+                           [required]="true"
+                           (change)="cameraChanged()"
+                           [(ngModel)]="camera.password"
+                           name="pwd"
+                           type="text"
+                           class="input-box"/>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div style="width: 190%">
+                    <div>
+                        <div class="d-flex" style="margin-top: 51px;">
+                            <p class="input-text">
+                                Confidence
+                            </p>
+                        </div>
+                        <div class="d-flex">
+                            <ng5-slider [(value)]="settings.confidence" [options]="confidenceOptions"></ng5-slider>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex">
+                            <p class="input-text">
+                                Sensitivity
+                            </p>
+                        </div>
+                        <div class="d-flex">
+                            <ng5-slider [(value)]="settings.sensitivity" [options]="sensitivityOptions"></ng5-slider>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex">
+                            <p class="input-text">
+                                Alert frequency
+                            </p>
+                        </div>
+                        <div class="d-flex">
+                            <ng5-slider [(value)]="settings.alertFrequency" [options]="alertFreqOptions"></ng5-slider>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-grow-1"></div>
+            </div>
+            <div class="d-flex">
+                <mat-checkbox name="isactive" [(ngModel)]="camera.isActive"
+                              [disabled]="activeCameraReached() && (create || showReached)">
+                    Active
+                </mat-checkbox>
+            </div>
+            <div class="d-flex">
+                <div class="hint">Only 4 active cameras allowed.</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="info scheduler">
+        <h2>Time scheduler</h2>
+        <div class="hint">Click on the cell to enable/disable recording for this hour.</div>
+
+        <div class="scheduler-wrapper">
+            <div class="scheduler-row" *ngFor="let day of days">
+                <div class="scheduler-col scheduler-col_weekday"
+                     (click)="weekdayClick(day.day)">{{day.name}}</div>
+                <div class="scheduler-col scheduler-col_hour"
+                     *ngFor="let hour of hours"
+                     (click)="matrixItemClick(day.day, hour)"
+                     [ngClass]="{ 'checked': isMatrixItemChecked(day.day, hour) }"></div>
+            </div>
+            <div class="scheduler-row">
+                <div class="scheduler-col scheduler-col_weekday">&nbsp;</div>
+                <div class="scheduler-col scheduler-col_hour-title"
+                     *ngFor="let hour of hours"
+                     (click)="hourClick(hour)">{{hour}}:00
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="d-flex justify-content-center" style="margin-top: 32px;">
+        <button mat-raised-button (click)="cancel()" class="cancel" style="margin-right: 24px;">
+            Cancel
+        </button>
+        <button mat-raised-button (click)="submit()" [disabled]="form.form.invalid || pending">
+            <span>Save Camera</span>
+        </button>
+    </div>
+
+</form>

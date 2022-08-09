@@ -1,0 +1,25 @@
+::ng-deep .error-snackbar {
+    background: #fff;
+    color: #EB5757;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.154px;
+    padding: 24px 17px !important;
+    max-width:394px !important;
+
+    .close {
+        color:#33325C;
+        margin-top:-5px;
+        cursor:pointer;
+        margin-left:30px
+    }
+
+    span {
+        display: inline-flex;
+        align-items: center;
+        margin-left: 10px;
+        flex-grow: 1
+    }
+}

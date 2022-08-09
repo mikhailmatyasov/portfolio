@@ -1,0 +1,4 @@
+<div class="container">
+    <h2 class="my-4">New user</h2>
+    <app-user-form [create]="true" [user]="user" (saved)="save($event)" (cancelled)="cancel()" [error]="error"></app-user-form>
+</div>

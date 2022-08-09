@@ -1,0 +1,47 @@
+@import "../../../../styles/colors.scss";
+
+.eventimage {
+    display: inline;
+    vertical-align: top;
+    margin: 4px;
+    cursor: pointer;
+}
+
+.eventimage_small {
+    max-width: 300px;
+}
+
+.eventimage_full {
+    max-width: 100%;
+}
+
+.events {
+    background: #FFFFFF;
+    border: 1px solid #F1F3F4;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 16px 23px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: $input-text-color;
+    margin-bottom: 20px;
+}
+
+.event {
+    border-bottom: 1px solid #ebebeb;
+}
+
+.event-title {
+}
+
+.event-images {
+}
+
+mat-icon {
+    margin-top: 15px;
+    font-size: 30px;
+}

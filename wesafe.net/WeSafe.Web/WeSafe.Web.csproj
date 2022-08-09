@@ -1,0 +1,114 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-WeSafe.Web-C9D1FE4F-F904-4D7E-B05A-4B1D4D842D11</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <PublishRunWithSpa>false</PublishRunWithSpa>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.1.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\components\alert-users-list\modals\" />
+    <Folder Include="ClientApp\src\app\components\device-info\modals\" />
+    <Folder Include="ClientApp\src\app\components\recognition-objects\modals" />
+    <Folder Include="ClientApp\src\app\modules\admin\components\" />
+    <Folder Include="wwwroot\app\records\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Content Remove="$(SpaRoot)**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\components\confirmation-modal\models\confirmation.ts" />
+    <None Remove="ClientApp\src\app\services\traffic.service.ts" />
+    <None Remove="ClientApp\src\app\validators\login-validator.ts" />
+    <None Remove="ClientApp\src\app\validators\must-match-validator.ts" />
+    <None Remove="ClientApp\src\patterns\regex-patterns.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WeSafe.Web.Core\WeSafe.Web.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\components\confirmation-modal\models\confirmation.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\alert-error-popup.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\detected-camera.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\device-indicators.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\recognition-object.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\time-zone.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\traffic-chart.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\alert-error-popup.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\traffic.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\validators\login-validator.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\validators\must-match-validator.ts" />
+    <TypeScriptCompile Include="ClientApp\src\patterns\regex-patterns.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Content\cameraMarks.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Content\dahua.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Content\hikvision.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientApp\src\assets\fonts\AvenirLTStd-Roman.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish" Condition="'$(PublishRunWithSpa)' == 'true'">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>

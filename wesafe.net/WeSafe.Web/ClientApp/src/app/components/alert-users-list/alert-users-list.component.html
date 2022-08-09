@@ -1,0 +1,75 @@
+
+<div>
+    <div class="d-flex justify-content-between alert-item align-items-stretch">
+        <div class="d-flex align-items-center">
+            <img src="\assets\images\telegram-icon.png" />
+            <span style="margin-left: 12px">Telegram users</span>
+        </div>
+        <div>
+            <button mat-raised-button type="submit" (click)="addUser()" [disabled]="adding">Add user</button>
+        </div>
+    </div>
+
+    <div class="d-sm-flex alert-item align-items-stretch camera-info" *ngFor="let user of users">
+        <div class="d-flex flex-grow-1 align-items-center">
+            <span class="username">{{user.name}}</span>
+            <span class="username">{{user.phone}} / {{user.password}}</span>
+        </div>
+        <div class="d-flex align-items-center actions">
+            <div class="icon-btn" (click)="delete(user.id)">
+                <app-icon-trash></app-icon-trash>
+            </div>
+            <div class="icon-btn" (click)="open(user)">
+                <app-icon-bell></app-icon-bell>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Telegram users</h5>
+    </div>
+    <ul class="list-group list-group-flush" *ngIf="users.length > 0 || adding">
+        <li class="list-group-item" *ngFor="let user of users">
+            <div class="d-flex w-100 justify-content-between align-items-center flex-wrap">
+                <span>{{user.name}} {{user.phone}}</span>
+                <div>
+                <div class="icon-btn" (click)="delete(user.id)">
+                    <app-icon-trash></app-icon-trash>
+                </div>
+                <div class="icon-btn" (click)="open(user)">
+                    <app-icon-bell></app-icon-bell>
+                </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item" *ngIf="adding">
+            <div class="d-flex w-100 justify-content-between align-items-center flex-wrap">
+                <input type="text"
+                       #phone="ngModel"
+                       [(ngModel)]="addedUser.phone"
+                       class="form-control form-control-sm"
+                       name="phone"
+                       placeholder="Phone +XXXXXXXXXXXX"
+                       aria-label="Phone +XXXXXXXXXXXX"
+                       mask="+000000000009"
+                       [required]="true"
+                       [class.is-invalid]="phone.invalid && (phone.dirty || phone.touched)">
+                <input type="text"
+                       #name="ngModel"
+                       [(ngModel)]="addedUser.name"
+                       class="form-control form-control-sm"
+                       name="name"
+                       placeholder="Username"
+                       [required]="true"
+                       [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+                <button class="btn btn-link btn-sm" (click)="save()" [disabled]="!addedUser.phone || !addedUser.name || pending">Add</button>
+                <button class="btn btn-link btn-sm" (click)="cancel()">Cancel</button>
+            </div>
+            <div class="text-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+        </li>
+    </ul>
+    <div class="card-body">
+        <button class="btn btn-primary btn-sm" (click)="addUser()" [disabled]="adding">Add user</button>
+    </div>
+</div>-->

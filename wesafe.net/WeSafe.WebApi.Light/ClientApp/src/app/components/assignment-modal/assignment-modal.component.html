@@ -1,0 +1,74 @@
+<mat-dialog-content>
+    <div>
+        <div class="d-flex flex-column ">
+            <div class="d-flex justify-content-between">
+                <span class="title">
+                    {{user.name}} assignments
+                </span>
+                <div class="close-btn">
+                    <mat-icon [mat-dialog-close]>close</mat-icon>
+                </div>
+            </div>
+            <div class="d-flex" style="margin-top: 16px">
+                <span class="text">
+                    Send alerts from these devices and cameras to {{user.name}}.
+                </span>
+            </div>
+            <div *ngIf="assignments.length == 0" class="d-flex" style="margin-top: 16px">
+                <span class="text">
+                    All devices and cameras.
+                </span>
+            </div>
+            <div *ngIf="assignments.length != 0" style="margin-top: 16px">
+                <div *ngFor="let assignment of assignments" class="d-flex" style="margin: 10px 0; border-bottom: 1px solid #ccc">
+                    <div class="flex-grow-1">Device: {{assignment.deviceName}}, {{assignment.cameraId ? 'Camera: ' + assignment.cameraName : 'All cameras'}}</div>
+                    <div>
+                        <div class="icon-btn" (click)="delete(assignment)">
+                            <app-icon-trash style="color:red"></app-icon-trash>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button mat-raised-button (click)="add()" class="button button-text" style="width:150px" *ngIf="!(adding || availableDevices.length === 0)">
+                Add device
+            </button>
+
+            <div *ngIf="adding" style="margin-top: 24px">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <mat-select [(ngModel)]="addingItem.deviceId"
+                                    (selectionChange)="deviceChanged()"
+                                    name="availableDevices"
+                                    placeholder="Device">
+                            <!--<mat-option [value]="null">All devices</mat-option>-->
+                            <mat-option [value]="device.id" *ngFor="let device of availableDevices">
+                                {{device.name}}
+                            </mat-option>
+                        </mat-select>
+                        <div class="hint">Select device</div>
+                    </div>
+                    <div style="margin-left: 32px;" class="flex-grow-1">
+                        <mat-select [(ngModel)]="addingItem.cameraId"
+                                    name="availableCameras"
+                                    placeholder="Camera">
+                            <mat-option [value]="null">All cameras</mat-option>
+                            <mat-option [value]="camera.id" *ngFor="let camera of availableCameras">
+                                {{camera.cameraName}}
+                            </mat-option>
+                        </mat-select>
+                        <div class="hint">Select camera</div>
+                    </div>
+                </div>
+                <div>
+                    <button (click)="commit()" [disabled]="!addingItem.deviceId || pending">Add</button>
+                    <button (click)="cancel()" class="cancel" style="margin-right:15px">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <button mat-raised-button class="button button-text" (click)="save()" *ngIf="!adding">
+            Save
+        </button>
+
+    </div>
+</mat-dialog-content>

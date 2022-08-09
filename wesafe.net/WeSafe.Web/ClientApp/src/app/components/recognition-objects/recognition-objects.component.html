@@ -1,0 +1,32 @@
+<div class="container">
+    <h2 class="my-4">Recognition objects</h2>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-outline-secondary" (click)="add()">Add recognition object</button>
+        </div>
+    </div>
+    <div class="table-responsive-md">
+        <table class="table table-sm my-3">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Active</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ro of recognitionObjects">
+                <td>{{ro.name}}</td>
+                <td>{{ro.description}}</td>
+                <td>{{ro.isActive ? 'Yes' : 'No'}}</td>
+                <td>
+                    <div class="icon-btn" (click)="edit(ro.id)">
+                        <app-icon-pencil></app-icon-pencil>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

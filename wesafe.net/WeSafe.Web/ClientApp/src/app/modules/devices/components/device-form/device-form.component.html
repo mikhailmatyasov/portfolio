@@ -1,0 +1,167 @@
+<form #form="ngForm" (ngSubmit)="submit()">
+    <fieldset [disabled]="pending">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Device type</label>
+            <mat-select class="col-sm-10" [(ngModel)]="device.deviceType"
+                        name="type"
+                        placeholder="Device type"
+                        style="padding-right: 15px; padding-left: 15px;">
+                <mat-option [value]="type.id" *ngFor="let type of deviceTypes">
+                    {{type.value}}
+                </mat-option>
+            </mat-select>
+        </div>
+        <div class="form-group row">
+            <label for="mac" class="col-sm-2 col-form-label">MAC address</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       #mac="ngModel"
+                       name="mac"
+                       [dropSpecialCharacters]="false"
+                       [required]="true"
+                       [(ngModel)]="device.macAddress"
+                       [class.is-invalid]="mac.invalid && (mac.dirty || mac.touched)"
+                       mask="AA:AA:AA:AA:AA:AA"
+                       class="form-control"
+                       id="mac">
+                <small class="form-text text-muted">
+                    Use valid MAC address in 'XX:XX:XX:XX:XX:XX' format.
+                </small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       #name="ngModel"
+                       name="name"
+                       [required]="true"
+                       [(ngModel)]="device.name"
+                       [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                       class="form-control"
+                       id="name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="hw" class="col-sm-2 col-form-label">HW version</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       #hw="ngModel"
+                       name="hw"
+                       [(ngModel)]="device.hwVersion"
+                       [class.is-invalid]="hw.invalid && (hw.dirty || hw.touched)"
+                       class="form-control"
+                       id="hw">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="sw" class="col-sm-2 col-form-label">SW version</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       #sw="ngModel"
+                       name="sw"
+                       [(ngModel)]="device.swVersion"
+                       [class.is-invalid]="sw.invalid && (sw.dirty || sw.touched)"
+                       class="form-control"
+                       id="sw">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="nVIDIASn" class="col-sm-2 col-form-label">NVIDIA SN</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       #nVIDIASn="ngModel"
+                       name="nVIDIASn"
+                       [(ngModel)]="device.nvidiaSn"
+                       [class.is-invalid]="nVIDIASn.invalid && (nVIDIASn.dirty || nVIDIASn.touched)"
+                       class="form-control"
+                       id="nVIDIASn">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="serialNumber" class="col-sm-2 col-form-label">Serial number</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       #serialNumber="ngModel"
+                       name="serialNumber"
+                       [(ngModel)]="device.serialNumber"
+                       [class.is-invalid]="serialNumber.invalid && (serialNumber.dirty || serialNumber.touched)"
+                       class="form-control"
+                       id="serialNumber">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="info" class="col-sm-2 col-form-label">Information</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       #info="ngModel"
+                       name="info"
+                       [(ngModel)]="device.info"
+                       [class.is-invalid]="info.invalid && (info.dirty || info.touched)"
+                       class="form-control"
+                       id="info">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="max" class="col-sm-2 col-form-label">Max active cameras</label>
+            <div class="col-sm-10">
+                <input type="number"
+                       #max="ngModel"
+                       name="max"
+                       [(ngModel)]="device.maxActiveCameras"
+                       [class.is-invalid]="max.invalid && (max.dirty || max.touched)"
+                       class="form-control"
+                       id="max">
+            </div>
+        </div>
+        <div *ngIf="!create">
+            <div class="form-group row">
+                <label for="token" class="col-sm-2 col-form-label">Token</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="token" [value]="device.token">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="assd" class="col-sm-2 col-form-label">Assembling date</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="assd" [value]="device.assemblingDate|date:'short'">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="cname" class="col-sm-2 col-form-label">Client name</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="cname" [value]="device.clientName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="accd" class="col-sm-2 col-form-label">Activating date</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="accd" [value]="device.activationDate|date:'short'">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="cip" class="col-sm-2 col-form-label">Client network IP</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="cip" [value]="device.clientNetworkIp">
+                </div>
+            </div>
+            <div class="form-group row" *ngIf="!create && apiToken">
+                <label for="api" class="col-sm-2 col-form-label">API access token</label>
+                <div class="col-sm-10">
+                    <textarea readonly class="form-control" id="api" [value]="apiToken" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group row">
+        <div class="col-sm-6 text-left">
+            <button type="button" class="btn btn-danger mr-2" (click)="deactivate()" *ngIf="!create && device.clientId">Deactivate</button>
+            <button type="button" class="btn btn-danger mr-2" (click)="onResetAuth()" *ngIf="!create">Reset auth</button>
+            <button type="button" class="btn btn-info" (click)="getApiToken()" *ngIf="!create">Create API token</button>
+        </div>
+        <div class="col-sm-6 text-right">
+            <button type="submit" class="btn btn-primary mr-2" [disabled]="form.form.invalid || pending">Save</button>
+            <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+</form>

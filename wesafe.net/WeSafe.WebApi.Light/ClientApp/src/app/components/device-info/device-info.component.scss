@@ -1,0 +1,60 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/mobile";
+
+.device-details {
+    margin-top: 26px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #33325C;
+
+    .parameter-header {
+        color: #5C5B7D;
+        font-weight: 500;
+        margin-bottom: 8px;
+        width: 180px
+    }
+
+    & > div {
+        margin-bottom: 24px;
+    }
+
+    & > div:last-child {
+        margin-bottom: 0;
+    }
+
+    @include mobile() {
+        font-size: 14px;
+        line-height: 16px;
+    }
+}
+
+.common-states {
+    margin: 0px 19px;
+
+    & > div {
+        margin: 0px 4px;
+    }
+
+    @include mobile() {
+        margin-top: 16px;
+        margin-left: 0;
+    }
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    padding: 0;
+    margin: 0;
+    margin-right: 19px;
+
+    .mat-icon {
+        cursor: pointer;
+        margin-left: 8px;
+        position: relative;
+        top: 3px;
+    }
+}

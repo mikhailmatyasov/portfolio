@@ -1,0 +1,100 @@
+<div>
+    <div class="d-sm-flex flex-column align-items-stretch" style="margin-bottom: 20px">
+        <div id="tools" class="d-flex flex-wrap">
+            <button type="button" mat-raised-button data-key="ignore"style=" background: #367BF5 !important"
+                    class="btn w-100 my-1 mr-2"
+                    name="Setup Ignore Area">
+                Setup Ignore Area
+            </button>
+            <button type="button" mat-raised-button data-key="perimeter" style="background: #1BC649 !important;"
+                    class="btn w-100 my-1 mr-2"
+                    name="Setup Perimeter Area">
+                Setup Perimeter Area
+            </button>
+            <button type="button" mat-raised-button data-key="pool"  style="background: #673ab7 !important"
+                    class="btn w-100 my-1"
+                    name="Setup Pool Area">
+                Setup Pool Area
+            </button>
+        </div>
+        <div class="d-flex align-items-stretch">
+            <div id="controls" class="d-none">
+                <button type="button" mat-raised-button data-complete="success" class="btn btn-primary w-100 my-1" name="Success">
+                    Submit
+                </button>
+                <button type="button" mat-raised-button data-complete="cancel" class="btn btn-danger w-100 my-1 cancel" name="Cancel" style="margin: 0 20px">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="canvas"></div>
+
+    <div class="mt-4 d-flex justify-content-between flex-wrap">
+        <div class="mb-2">
+            <button type="button" mat-raised-button class="btn btn-danger mr-2 mb-2" style="background: #33325C !important" (click)="clear('roi_ignore')">
+                Clear ignore
+            </button>
+            <button type="button" mat-raised-button class="btn btn-danger mr-2 mb-2" style="background: #33325C !important" (click)="clear('roi_perimeter')">
+                Clear perimeter
+            </button>
+            <button type="button" mat-raised-button class="btn btn-danger mb-2" style="background: #33325C !important" (click)="clear('roi_pool')">
+                Clear pool
+            </button>
+        </div>
+        <div class="mb-2">
+            <button type="button" mat-raised-button class="btn btn-primary mr-2 mb-2" (click)="onSave()">Save</button>
+            <button type="button" mat-raised-button class="btn btn-outline-dark mb-2 cancel" (click)="onCancel()">Cancel</button>
+        </div>
+    </div>
+</div>
+<!--
+
+<div class="mt-4 d-flex justify-content-between flex-wrap">
+    <div class="mb-2">
+        <button type="button" class="btn btn-danger mr-2 mb-2" (click)="clear('roi_ignore')">
+            Clear ignore
+        </button>
+        <button type="button" class="btn btn-danger mr-2 mb-2" (click)="clear('roi_perimeter')">
+            Clear
+            perimeter
+        </button>
+        <button type="button" class="btn btn-danger mb-2" (click)="clear('roi_pool')">Clear pool</button>
+    </div>
+    <div class="mb-2">
+        <button type="button" class="btn btn-primary mr-2 mb-2" (click)="onSave()">Save</button>
+        <button type="button" class="btn btn-outline-dark mb-2" (click)="onCancel()">Cancel</button>
+    </div>
+</div>
+<div class="d-flex flex-column align-items-stretch mt-4">
+    <div id="tools" class="d-flex flex-column">
+        <input data-key="ignore"
+               type="button"
+               class="btn w-100 my-1"
+               style="background-color: rgba(255,0,255,0.2)"
+               name="Setup Ignore Area"
+               value="Setup Ignore Area">
+        <input data-key="perimeter"
+               type="button"
+               class="btn w-100 my-1"
+               style="background-color: rgba(0,255, 0,0.2)"
+               name="Setup Perimeter Area"
+               value="Setup Perimeter Area">
+        <input data-key="pool"
+               type="button"
+               class="btn w-100 my-1"
+               style="background-color: rgba(0,0,255,0.2)"
+               name="Setup Pool Area"
+               value="Setup Pool Area">
+    </div>
+    <div class="d-flex flex-column align-items-stretch">
+        <div id="controls" class="d-none flex-column">
+            <input data-complete="success" type="button" class="btn btn-primary w-100 my-1" name="Success"
+                   value="Submit">
+            <input data-complete="cancel" type="button" class="btn btn-danger w-100 my-1" name="Cancel"
+                   value="Cancel">
+        </div>
+    </div>
+</div>
+-->

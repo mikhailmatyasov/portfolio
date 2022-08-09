@@ -1,0 +1,47 @@
+<div class="card mb-4">
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label>Start Date</label>
+            <input (dateTimeChange)="startDateTimeChanged($event)" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                   class="form-control"
+                   placeholder="Start Date Time">
+            <owl-date-time #dt1 hideOtherMonths="false"></owl-date-time>
+        </div>
+
+        <div class="col-sm-2">
+            <label>End Date</label>
+            <input class="form-control" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2"
+                   placeholder="End Date Time" (dateTimeChange)="endDateTimeChanged($event)">
+            <owl-date-time #dt2 hideOtherMonths="false"></owl-date-time>
+        </div>
+
+        <div class="col-sm-2">
+            <label>Select Camera</label>
+            <mat-select [(ngModel)]="selectedCameraId"
+                        name="type"
+                        placeholder="Camera"
+                        style="margin-top: 0">
+                <mat-option [value]="camera.id" *ngFor="let camera of cameras">
+                    {{camera.cameraName}}
+                </mat-option>
+            </mat-select>
+        </div>
+
+        <div class="col-sm-4">
+            <button class="btn btn-outline-primary" [disabled]="(!selectedCameraId || !selectedStartDate || !selectedEndDate)" (click)="loadVideos()" style="margin-top: 14px">Filter videos</button>
+        </div>
+    </div>
+    <div class="d-flex flex-wrap" style="margin-top: 20px;">
+        <div class="event mb-2" *ngFor="let video of videos">
+            <div style="max-width: 350px; margin-right: 10px ">
+                <div style="font-size: 12px; margin-bottom: 10px; color: rebeccapurple;">
+                    File: {{video}}
+                </div>
+                <div>
+                    <video style="max-height: 200px;" controls="controls" [src]="video"></video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

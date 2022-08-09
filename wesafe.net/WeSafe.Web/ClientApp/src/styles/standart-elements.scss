@@ -1,0 +1,121 @@
+@import "colors.scss";
+@import "../mixins/_button";
+@import "../mixins/_input.scss";
+@import "../styles/mobile";
+
+html, body {
+    font-family: Roboto-Regular;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: $body-color;
+}
+input, input.mat-input-element {
+    width: 100%;
+    height: 45px;
+    @include input-textbox
+}
+
+button, button.mat-button-base {
+    @include button;
+
+    &.cancel {
+        border: 1px solid #33325C !important;
+        background-color: #F7F9FA !important;
+        color: #33325C !important;
+        // padding: 16px 34px !important; // it looks strange. Need to clarify design.
+    }
+}
+button[disabled]{
+    opacity:0.5;
+}
+
+h1 {
+    font-family: Roboto-Regular;
+    font-size: 32px;
+    line-height: 36px;
+    display: inline-block;
+    color: #33325C;
+    margin: 0 0 0.5rem 0;
+    padding: 0;
+
+    @include mobile() {
+        font-size: 24px;
+        line-height: 27px;
+    }
+}
+
+table {
+    background-color: $body-color;
+    margin-top: 32px;
+    width: 100%;
+    font-size: 16px;
+    border-collapse: collapse;
+
+    th {
+        text-align: left;
+    }
+
+    .table-header {
+        background: #E4E6EA;
+        border-radius: 5px;
+        border: 1px;
+        border-color: #F1F3F4;
+        font-family: Roboto-Regular;
+        font-style: normal;
+        color: $input-text-color;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 19px;
+        width: 100%;
+        padding: 0 !important;
+        text-align: justify;
+        margin-bottom: 8px;
+
+        @include mobile() {
+            font-size: 14px;
+            line-height: 16px;
+        }
+    }
+
+    .table-row {
+        border: 1px solid #F1F3F4;
+        border-radius: 5px;
+        background: #FFFFFF;
+        font-family: Roboto-Regular;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        margin-top: 3px;
+        width: 100%;
+        text-align: justify;
+        color: $input-text-color;
+
+        @include mobile() {
+            font-size: 14px;
+            line-height: 16px;
+        }
+    }
+}
+
+a {
+    text-decoration: none;
+    color: #367bf5;
+}
+
+mat-select {
+    border: 1px solid $input-border-color;
+    padding-left: 16px;
+    color: $input-text-color;
+    font-size: 16px;
+    margin-top: 18px;
+    padding: 13px;
+    border-radius: 5px;
+}
+
+fieldset {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}

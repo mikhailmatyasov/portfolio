@@ -1,0 +1,57 @@
+<div class="d-flex device-info" *ngIf="device">
+    <div class="d-flex flex-column">
+        <div class="d-sm-flex align-items-center">
+            <h2>
+                <span>{{device.name}}</span>
+                <mat-icon (click)="editDeviceName()">edit</mat-icon>
+            </h2>
+            <div class="d-flex common-states">
+                <div class="state d-flex justify-content-center align-items-center" [class.armed]="device.isArmed" [class.disarmed]="!device.isArmed">
+                    {{getDeviceState(device.isArmed)}}
+                </div>
+                <div class="state d-flex justify-content-center align-items-center" [class.online]="device.status == 'online'" [class.offline]="device.status != 'online'">
+                    <span *ngIf="device.status">{{device.status}}</span>
+                    <span *ngIf="!device.status">Offline</span>
+                </div>
+                <div style="position: relative" class="state d-flex justify-content-center align-items-center" [class.online]="device.status == 'online'" [class.offline]="device.status != 'online'">
+                    <span class="network-state">Network state:</span>
+                    <span *ngIf="device.status">{{device.status}}</span>
+                    <span *ngIf="!device.status">Offline</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="device-details">
+            <div class="d-flex">
+                <div>
+                    <div class="parameter-header">IP Address</div>
+                    <div class="parameter-value">{{device.clientNetworkIp}}</div>
+                </div>
+                <div>
+                    <div class="parameter-header">MAC Address</div>
+                    <div class="parameter-value">{{device.macAddress}}</div>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div>
+                    <div class="parameter-header">HW Version</div>
+                    <div class="parameter-value">{{device.hwVersion}}</div>
+                </div>
+                <div>
+                    <div class="parameter-header">SW Version</div>
+                    <div class="parameter-value">{{device.swVersion}}</div>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div>
+                    <div class="parameter-header">Assembling Date</div>
+                    <div class="parameter-value">{{device.assemblingDate | date:'shortDate'}}</div>
+                </div>
+                <div>
+                    <div class="parameter-header">Activating Date</div>
+                    <div class="parameter-value">{{device.activationDate | date:'shortDate'}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

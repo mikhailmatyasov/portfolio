@@ -1,0 +1,46 @@
+@import "../../../../../styles/colors.scss";
+
+.name {
+    cursor: pointer;
+}
+
+.area-list {
+    background: #FFFFFF;
+    border: 1px solid #F1F3F4;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 0 24px;
+
+    &__item {
+        padding: 20px 0;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #EBEBEF;
+        }
+    }
+
+    &__item-name {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23px;
+        color: $input-text-color;
+        width: 50%;
+    }
+
+    &__item-type {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        color: $input-text-color;
+        width: 50%;
+    }
+}
+
+.right-pane {
+    text-align: right;
+}
+
+.area-buttons {
+    text-align: right;
+}

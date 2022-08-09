@@ -1,0 +1,31 @@
+<app-login-home>
+    <div class="text">
+        <p class="heading" style="font-size: 35px">Welcome to WeSafe</p>
+        <p class="heading" style="font-size: 24px; margin-top: 61px; margin-bottom: 0">Sign Up</p>
+        <p style="margin-top: 8px;">Use registration code. If you do not have registration code, please contact us.</p>
+
+    </div>
+
+    <div class="input-and-button">
+        <div class="registration-form" [formGroup]="formGroup">
+            <input matInput
+                   style="margin-top: 37px;"
+                   type="text"
+                   class="input-box"
+                   formControlName="deviceToken"
+                   [class.is-invalid]="formGroup.invalid && (formGroup.dirty || formGroup.touched)"
+                   name="regcode"
+                   placeholder="Registration code"
+                   aria-describedby="button-addon2">
+
+            <div class="float-right">
+                <button [disabled]="formGroup.invalid" mat-raised-button type="submit" class="button button-text login float-right" id="button-addon2" style="margin-top: 24px; margin-bottom: 27px" (click)="submitSignUp()">
+                    Next
+                </button>
+                <div class="hint" style="margin-top: 0;">
+                    Have an account? <a routerLink="/login"><strong>Sign in</strong></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-login-home>

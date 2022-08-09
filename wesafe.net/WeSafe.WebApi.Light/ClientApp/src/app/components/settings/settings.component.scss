@@ -1,0 +1,23 @@
+@import "../../../styles/colors.scss";
+@import "~src/styles/mobile";
+
+.wrapper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.card {
+    background: #FFFFFF;
+    border: 1px solid #F1F3F4;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 16px 23px;
+}
+
+.label {
+    color: $input-text-color;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: inline-block;
+}

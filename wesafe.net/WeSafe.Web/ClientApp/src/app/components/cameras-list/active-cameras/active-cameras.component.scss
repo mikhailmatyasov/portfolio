@@ -1,0 +1,7 @@
+::ng-deep .mat-paginator-icon {
+    color: black;
+}
+
+::ng-deep mat-paginator mat-form-field .mat-form-field-underline {
+    display: none;
+}

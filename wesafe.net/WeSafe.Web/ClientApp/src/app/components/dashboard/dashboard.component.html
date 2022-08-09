@@ -1,0 +1,35 @@
+<div class="container-fluid wrapper">
+
+    <app-back-to [url]="['/devices/']" title="Back to Devices list"></app-back-to>
+
+    <div class="dashboard d-sm-flex">
+        <app-device-info [deviceId]="deviceId"></app-device-info>
+    </div>
+
+    <div class="d-sm-flex mb-4">
+        <div class="d-flex flex-grow-1 device-dependencies device-dependency-camera">
+            <app-cameras-list style="width: 100%" [deviceId]="deviceId"></app-cameras-list>
+        </div>
+        <div class="d-flex flex-grow-1 device-dependencies device-dependency-users">
+            <app-alert-users-list style="width: 100%" [deviceId]="deviceId"></app-alert-users-list>
+        </div>
+    </div>
+
+    <mat-tab-group>
+        <div *ngIf="deviceType == 0">
+            <mat-tab label="Events">
+                <app-events></app-events>
+            </mat-tab>
+        </div>
+        <div *ngIf="deviceType == 1">
+            <mat-tab label="Traffic">
+                <app-traffic-group [deviceId]="deviceId"></app-traffic-group>
+            </mat-tab>
+        </div>
+        <div *ngIf="deviceType == 2">
+            <mat-tab label="ALPR">
+                <app-alpr [deviceId]="deviceId"></app-alpr>
+            </mat-tab>
+        </div>
+    </mat-tab-group>
+</div>

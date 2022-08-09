@@ -1,0 +1,5 @@
+<a routerLink="/profile" class="link">{{authService.getDisplayName()}}</a>
+<div class="logout" (click)="logout()">
+    <img (click)="logout()" src="./assets/images/icon-logout.jpg" alt=""/>
+    <span>Logout</span>
+</div>

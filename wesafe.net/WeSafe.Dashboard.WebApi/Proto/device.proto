@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "WeSafe.Dashboard.WebApi.Proto";
+
+service DeviceGrpc {
+	rpc GetDevicesNames(DeviceRequest) returns (DeviceNamesReponse) {}
+}
+
+message DeviceRequest {
+	repeated int32 deviceIds = 1;
+}
+
+
+message DeviceNamesReponse {
+	repeated DeviceName DevicesNames = 1;
+}
+
+message DeviceName{
+	int32 id = 1;
+	string name = 2;
+}

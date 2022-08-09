@@ -1,0 +1,69 @@
+<app-login-home>
+    <div class="text">
+        <p class="heading" style="font-size: 24px; margin-top: 61px; margin-bottom: 0">Sign Up</p>
+        <p style="margin-top: 8px; margin-bottom: 0;">Create your account and use user name and password at Sign In.</p>
+    </div>
+
+    <div class="input-and-button">
+        <div class="registration-form" [formGroup]="formGroup">
+
+            <mat-select class="col-sm-10" [(ngModel)]="selectedDeviceType"
+                        formControlName="deviceTypes"
+                        placeholder="Device type"
+                        style="padding-right: 15px; padding-left: 15px;">
+                <mat-option [value]="type.id" *ngFor="let type of deviceTypes">
+                    {{type.value}}
+                </mat-option>
+            </mat-select>
+
+            <input matInput
+                   type="text"
+                   class="input-box"
+                   style="margin-top: 20px"
+                   formControlName="name"
+                   name="name"
+                   placeholder="Full name"
+                   aria-describedby="button-addon3">
+
+            <input matInput
+                   type="text"
+                   class="input-box"
+                   style="margin-top: 20px"
+                   formControlName="phone"
+                   name="phone"
+                   placeholder="Phone Number"
+                   aria-describedby="button-addon4">
+
+            <input matInput
+                   type="text"
+                   class="input-box"
+                   style="margin-top: 20px"
+                   formControlName="userName"
+                   name="login"
+                   placeholder="User Name"
+                   aria-describedby="button-addon5">
+
+            <input matInput
+                   type="password"
+                   class="input-box"
+                   style="margin-top: 20px"
+                   formControlName="password"
+                   name="pwd"
+                   placeholder="Password"
+                   aria-describedby="button-addon6">
+
+            <input matInput
+                   type="password"
+                   class="input-box"
+                   style="margin-top: 20px"
+                   formControlName="confirmPassword"
+                   name="cpwd"
+                   placeholder="Confirm Password"
+                   aria-describedby="button-addon7">
+
+            <button [disabled]="formGroup.invalid" mat-raised-button type="submit" class="button button-text login float-right" id="button-addon2" style="margin-top: 24px;" (click)="completeSignUp()">
+                Sign Up
+            </button>
+        </div>
+    </div>
+</app-login-home>

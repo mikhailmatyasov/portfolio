@@ -1,0 +1,35 @@
+<ng-container *ngIf="cameras.length == 0">
+    <h4>
+        No cameras found.
+    </h4>
+</ng-container>
+<div class="d-sm-flex camera-item align-items-stretch camera-info" *ngFor="let camera of cameras">
+    <div class="d-flex align-items-center flex-grow-1">
+        <a [routerLink]="['/', 'devices', deviceId, 'cameras', camera.id]">{{camera.cameraName}} ({{camera.ip}}:{{camera.port}})</a>
+        <div class="state d-flex justify-content-center align-items-center" [class.online]="camera.status == 'ONLINE'" [class.offline]="camera.status != 'ONLINE'">
+            <span *ngIf="camera.status">{{camera.status}}</span>
+            <span *ngIf="!camera.status">Offline</span>
+        </div>
+        <div style="position: relative; margin-left: 37px" class="state d-flex justify-content-center align-items-center" [class.online]="camera.networkStatus == 'ONLINE'" [class.offline]="camera.networkStatus != 'ONLINE'">
+            <span class="network-state">Network state:</span>
+            <span *ngIf="camera.networkStatus">{{camera.networkStatus}}</span>
+            <span *ngIf="!camera.networkStatus">Offline</span>
+        </div>
+    </div>
+    <div class="d-flex align-items-center actions">
+        <a class="roi" *ngIf="camera.lastImagePath" [routerLink]="['/', 'devices', deviceId, 'cameras', camera.id, 'roi']">Adjust ROI</a>
+        <mat-icon [routerLink]="['/', 'devices', deviceId, 'cameras', camera.id]">edit</mat-icon>
+        <div class="icon-btn" (click)="deleteCamera(camera.id)">
+            <app-icon-trash></app-icon-trash>
+        </div>
+    </div>
+</div>
+<div>
+    <button mat-raised-button type="submit" (click)="addCamera()">Add camera</button>
+</div>
+
+<mat-paginator [length]="page.total"
+               [pageSize]="page.size"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="loadPage($event)">
+</mat-paginator>

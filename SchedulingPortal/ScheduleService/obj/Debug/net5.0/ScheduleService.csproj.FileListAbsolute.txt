@@ -1,0 +1,17 @@
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\bin\Debug\net5.0\ScheduleService.deps.json
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\bin\Debug\net5.0\ScheduleService.dll
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\bin\Debug\net5.0\ref\ScheduleService.dll
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\bin\Debug\net5.0\ScheduleService.pdb
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\bin\Debug\net5.0\Common.dll
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\bin\Debug\net5.0\Model.dll
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\bin\Debug\net5.0\Common.pdb
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\bin\Debug\net5.0\Model.pdb
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\obj\Debug\net5.0\ScheduleService.csproj.AssemblyReference.cache
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\obj\Debug\net5.0\ScheduleService.GeneratedMSBuildEditorConfig.editorconfig
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\obj\Debug\net5.0\ScheduleService.AssemblyInfoInputs.cache
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\obj\Debug\net5.0\ScheduleService.AssemblyInfo.cs
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\obj\Debug\net5.0\ScheduleService.csproj.CoreCompileInputs.cache
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\obj\Debug\net5.0\ScheduleService.csproj.CopyComplete
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\obj\Debug\net5.0\ScheduleService.dll
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\obj\Debug\net5.0\ref\ScheduleService.dll
+C:\cygwin64\home\mmatyas\starsports\Portal\Backend\ScheduleService\obj\Debug\net5.0\ScheduleService.pdb

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="7.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WeSafe.Bus.Contracts\WeSafe.Bus.Contracts.csproj" />
+    <ProjectReference Include="..\WeSafe.Shared\WeSafe.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+<mat-dialog-content>
+    <div [formGroup]="formGroup">
+        <div class="d-flex justify-content-between">
+            <div>
+                <span class="title">Edit Device name</span>
+            </div>
+            <div class="close-btn">
+                <mat-icon (click)="onNoClick()">close</mat-icon>
+            </div>
+        </div>
+        <input matInput
+               formControlName="deviceName"
+               class="input-box"
+               type="text"
+               placeholder="Type new name"
+               autofocus />
+
+        <button mat-raised-button [mat-dialog-close]="formGroup.value" class="button button-text">
+            Save
+        </button>
+    </div>
+
+
+</mat-dialog-content>

@@ -1,0 +1,92 @@
+<div class="container-fluid">
+    <h2 class="my-4">Devices logs</h2>
+    <div class="form-group row">
+        <button class="btn btn-outline-secondary" (click)="insertLastLogs()" style="margin: 10px">Insert last logs</button>
+        <button class="btn btn-outline-secondary" (click)="loadDevicesLogs()" style="margin: 10px">Filter logs</button>
+        <a [href]="getDownloadLogsUrl()" target="_blank" class="fa fa-download" style="font-size: 36px; margin: 10px"></a>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label>Log level</label>
+            <ng-multiselect-dropdown [placeholder]="'Select log levels'"
+                                     [data]="logLevels"
+                                     [(ngModel)]="selectedLogLevels"
+                                     [settings]="dropdownSettings"
+                                     (onSelectAll)="onSelectAndDeSelectAll($event)"
+                                     (onDeSelectAll)="onSelectAndDeSelectAll($event)">
+            </ng-multiselect-dropdown>
+        </div>
+        <div class="col-sm-2">
+            <label>Start Date</label>
+            <input class="form-control" readonly="readonly" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Start Date Time"  (dateTimeChange)="startDateTimeChanged($event)">
+            <owl-date-time #dt1 hideOtherMonths="false"></owl-date-time>
+        </div>
+
+        <div class="col-sm-2">
+            <label>End Date</label>
+            <input class="form-control" readonly="readonly" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="End Date Time"  (dateTimeChange)="endDateTimeChanged($event)">
+            <owl-date-time #dt2 hideOtherMonths="false"></owl-date-time>
+        </div>
+
+        <div class="col-sm-2">
+            <label>Clients</label>
+            <select name="vendor" id="vendor" class="form-control" [(ngModel)]="selectedClientId" (change)="getClientsDevices(selectedClientId)">
+                <option [ngValue]=0>any</option>
+                <option [ngValue]="client.id" *ngFor="let client of clients">{{client.name}}</option>
+            </select>
+        </div>
+        <div class="col-sm-2" *ngIf="selectedClientId && selectedClientId != 0">
+            <label>Devices</label>
+            <select name="type" id="devices" class="form-control" [(ngModel)]="selectedDeviceId" (change)="getDeviceCameras(selectedDeviceId)">
+                <option [ngValue]=0>any</option>
+                <option [ngValue]="device.id" *ngFor="let device of devices">{{device.name}}</option>
+            </select>
+        </div>
+        <div class="col-sm-2" *ngIf="selectedDeviceId && selectedDeviceId != 0 && selectedClientId != 0">
+            <label>Cameras</label>
+            <select name="type" id="cameras" class="form-control" [(ngModel)]="selectedCameraId">
+                <option [ngValue]=0>any</option>
+                <option [ngValue]=-1>null</option>
+                <option [ngValue]="camera.id" *ngFor="let camera of cameras">{{camera.cameraName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <input type="text"
+                   placeholder="Search text"
+                   #name="ngModel"
+                   [(ngModel)]="searchText"
+                   class="form-control">
+        </div>
+    </div>
+    <div class="table-responsive-md">
+        <table class="table table-sm my-3">
+            <thead>
+                <tr>
+                    <th scope="col">Client name</th>
+                    <th scope="col">Device Name</th>
+                    <th scope="col">Camera Name</th>
+                    <th scope="col">Log level</th>
+                    <th scope="col">Error message</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let device of rows">
+                    <td>{{device.clientName}}</td>
+                    <td>{{device.deviceName}}</td>
+                    <td>{{device.cameraName}}</td>
+                    <td>{{device.logLevel}}</td>
+                    <td>{{device.errorMessage}}</td>
+                    <td>{{device.dateTime | date:'dd.MM.yyyy, HH:mm'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <mat-paginator [length]="page.total"
+                   [pageSize]="page.size"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="loadPage($event)">
+    </mat-paginator>
+</div>

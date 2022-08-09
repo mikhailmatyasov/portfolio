@@ -1,0 +1,47 @@
+<div class="events">Ie
+    <div class="card-body">
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label>Start Date</label>
+                <input (dateTimeChange)="startDateTimeChanged($event)" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                       class="form-control"
+                       placeholder="Start Date Time"
+                       [(ngModel)]="selectedStartDate">
+                <owl-date-time #dt1 hideOtherMonths="false"></owl-date-time>
+            </div>
+
+            <div class="col-sm-2">
+                <label>End Date</label>
+                <input class="form-control" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2"
+                       placeholder="End Date Time" (dateTimeChange)="endDateTimeChanged($event)">
+                <owl-date-time #dt2 hideOtherMonths="false"></owl-date-time>
+            </div>
+
+            <div class="col-sm-8">
+                <button [disabled]="!(selectedStartDate && selectedEndDate)" class="btn btn-outline-primary" (click)="loadEvents()" style="margin-top: 14px">Filter events</button>
+            </div>
+        </div>
+
+        <div *ngIf="rows.length">
+            <table>
+                <thead>
+                <tr>
+                    <th>Camera Name</th>
+                    <th>Entered</th>
+                    <th>Exited</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let row of rows">
+                    <td>{{row.cameraName}}</td>
+                    <td>{{row.entered}}</td>
+                    <td>{{row.exited}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="!rows.length">
+            <h3>No events found.</h3>
+        </div>
+    </div>
+</div>

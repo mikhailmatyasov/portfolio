@@ -1,0 +1,27 @@
+<ng-container *ngIf="detectedCameras.length == 0">
+    <h4>
+        No detected cameras found.
+    </h4>
+</ng-container>
+<ng-container *ngIf="detectedCameras.length > 0">
+    <div class="d-sm-flex camera-item align-items-stretch camera-info" *ngFor="let camera of detectedCameras">
+        <div class="flex-grow-1">
+            <span>{{camera.name}} ({{camera.ip}}:{{camera.port}})</span>
+            <span *ngIf="camera.state === 2" class="green">&mdash; Connecting</span>
+            <span *ngIf="camera.state === 3" class="red">&mdash; Connect failure</span>
+            <div *ngIf="camera.connectFailureText" class="error">{{camera.connectFailureText}}</div>
+        </div>
+        <div class="d-flex align-items-center actions">
+            <button *ngIf="camera.state === 1 || camera.connectFailureText" (click)="connect(camera)" class="small mr-1">Connect</button>
+            <div class="icon-btn" (click)="deleteDetectedCamera(camera.id)">
+                <app-icon-trash></app-icon-trash>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<mat-paginator [length]="page.total"
+               [pageSize]="page.size"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="loadPage($event)">
+</mat-paginator>

@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <h2 class="my-4">Unhandled exceptions</h2>
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label>Users</label>
+            <select name="vendor" id="vendor" class="form-control" [(ngModel)]="selectedUserName">
+                <option>Any</option>
+                <option>Anonymous</option>
+                <option *ngFor="let user of users">{{user.userName}}</option>
+            </select>
+        </div>
+        <div class="col-sm-2">
+            <label>Start Date</label>
+            <input class="form-control" readonly="readonly" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Start Date Time" (dateTimeChange)="startDateTimeChanged($event)">
+            <owl-date-time #dt1 hideOtherMonths="false"></owl-date-time>
+        </div>
+
+        <div class="col-sm-2">
+            <label>End Date</label>
+            <input class="form-control" readonly="readonly" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="End Date Time" (dateTimeChange)="endDateTimeChanged($event)">
+            <owl-date-time #dt2 hideOtherMonths="false"></owl-date-time>
+        </div>
+        <div class="col-sm-2">
+            <br/>
+            <button class="btn btn-outline-secondary" (click)="loadUnhandledExceptions()" style="margin: 10px">Filter</button>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <input type="text"
+                   placeholder="Search text"
+                   #name="ngModel"
+                   [(ngModel)]="searchErrorText"
+                   class="form-control">
+        </div>
+    </div>
+    <div class="table-responsive-md">
+        <table class="table table-sm my-3">
+            <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Error message</th>
+                <th scope="col">Stack trace</th>
+                <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let unhandledException of rows">
+                    <td>{{unhandledException.userName}}</td>
+                    <td>{{unhandledException.errorMessage}}</td>
+                    <td>{{unhandledException.stackTrace}}</td>
+                    <td>{{unhandledException.dateTime | date:'dd.MM.yyyy, HH:mm'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <mat-paginator [length]="page.total"
+                   [pageSize]="page.size"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="loadPage($event)">
+    </mat-paginator>
+</div>

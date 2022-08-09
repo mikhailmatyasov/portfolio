@@ -1,0 +1,42 @@
+<div class="card mb-4">
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label>Start Date</label>
+            <input (dateTimeChange)="startDateTimeChanged($event)" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                   class="form-control"
+                   placeholder="Start Date Time"
+                   [(ngModel)]="selectedStartDate">
+            <owl-date-time #dt1 hideOtherMonths="false"></owl-date-time>
+        </div>
+
+        <div class="col-sm-2">
+            <label>End Date</label>
+            <input class="form-control" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2"
+                   placeholder="End Date Time" (dateTimeChange)="endDateTimeChanged($event)">
+            <owl-date-time #dt2 hideOtherMonths="false"></owl-date-time>
+        </div>
+
+        <div class="col-sm-8">
+            <button class="btn btn-outline-primary" (click)="loadEvents()" style="margin-top: 14px">Filter events</button>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="rows.length">
+    <div class="events mb-4">
+        <div class="card" *ngFor="let event of rows">
+            <app-event [event]="event"></app-event>
+        </div>
+    </div>
+</div>
+<div *ngIf="!rows.length">
+    <h3>No events found.</h3>
+</div>
+
+<mat-paginator [length]="page.total"
+               [pageSize]="page.size"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="loadPage($event)">
+</mat-paginator>
+

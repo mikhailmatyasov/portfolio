@@ -1,0 +1,19 @@
+<div class="container-fluid wrapper">
+    <app-back-to [url]="['/devices/', deviceId]" title="Back to Dashboard"></app-back-to>
+    <h2 class="roi-header">{{title}}</h2>
+    <div class="d-flex flex-column">
+        <app-roi-editor-ver1 [roi]="roi"
+                             [lastImagePath]="this.camera.lastImagePath"
+                             (save)="save($event)"
+                             (cancel)="cancel()"
+                             *ngIf="this.camera && !this.roi.version">
+        </app-roi-editor-ver1>
+        <app-roi-editor-ver2 [roi]="roi"
+                             [lastImagePath]="this.camera.lastImagePath"
+                             (save)="save($event)"
+                             (cancel)="cancel()"
+                             *ngIf="this.camera && this.roi.version === '2.0'">
+        </app-roi-editor-ver2>
+    </div>
+</div>
+

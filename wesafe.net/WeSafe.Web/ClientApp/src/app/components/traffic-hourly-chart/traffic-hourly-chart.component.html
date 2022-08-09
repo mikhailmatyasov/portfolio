@@ -1,0 +1,43 @@
+<div class="events">
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label>Date</label>
+            <input (dateTimeChange)="dateChanged($event)" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                   class="form-control"
+                   placeholder="Date"
+                   [disabled]="loading"
+                   [(ngModel)]="selectedDate">
+            <owl-date-time #dt1 hideOtherMonths="false" pickerType="calendar"></owl-date-time>
+        </div>
+
+        <div class="col-sm-2">
+            <label for="cameras">Camera</label>
+            <mat-select [(ngModel)]="selectedCameraId"
+                        id="cameras"
+                        name="cameras"
+                        placeholder="Camera"
+                        [disabled]="loading"
+                        (selectionChange)="cameraChanged($event)"
+            >
+                <mat-option [value]="camera.id" *ngFor="let camera of cameras">
+                    {{camera.cameraName}}
+                </mat-option>
+            </mat-select>
+        </div>
+    </div>
+    <div class="chart-wrapper">
+        <ngx-charts-line-chart [results]="values"
+                               [legend]="true"
+                               [xAxis]="true"
+                               [yAxis]="true"
+                               [xAxisLabel]="'Hour'"
+                               [yAxisLabel]="'Count'"
+                               [showXAxisLabel]="true"
+                               [showYAxisLabel]="true"
+                               *ngIf="chartItems.length > 0"
+                               class="chart"
+        >
+        </ngx-charts-line-chart>
+        <div class="chart-no-data" *ngIf="chartItems.length === 0">No chart data</div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+@import "~src/styles/colors";
+
+.event {}
+
+.event__image {
+    display: block;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.event__text {
+    display: flex;
+    color: $input-text-color;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 12px;
+}
+
+.event__message {
+    flex: auto;
+}
+
+.event__time {
+    opacity: 0.5;
+}

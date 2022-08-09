@@ -1,0 +1,41 @@
+<mat-dialog-content>
+    <div [formGroup]="formGroup">
+        <div class="d-flex justify-content-between">
+            <div>
+                <span class="title">{{title}}</span>
+            </div>
+            <div class="close-btn">
+                <mat-icon (click)="onNoClick()">close</mat-icon>
+            </div>
+        </div>
+        <div>
+            <input matInput
+                   formControlName="name"
+                   class="input-box"
+                   type="text"
+                   placeholder="Area name"
+                   autofocus />
+        </div>
+
+        <div>
+            <mat-select class="input-box" formControlName="type" placeholder="Area type" [disabled]="!create">
+                <mat-option *ngFor="let area of areas" [value]="area.type">
+                    {{area.name}}
+                </mat-option>
+            </mat-select>
+        </div>
+
+        <div>
+            <mat-select class="input-box" [multiple]="true" formControlName="recognitionObjects" placeholder="Recognition objects">
+                <mat-option *ngFor="let ro of data.recognitionObjects" [value]="ro.name">
+                    {{ro.name}}
+                </mat-option>
+            </mat-select>
+        </div>
+
+        <button mat-raised-button [mat-dialog-close]="formGroup.value" [disabled]="formGroup.invalid" class="button button-text">
+            {{buttonText}}
+        </button>
+    </div>
+
+</mat-dialog-content>

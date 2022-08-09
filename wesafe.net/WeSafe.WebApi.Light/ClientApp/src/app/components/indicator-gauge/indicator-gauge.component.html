@@ -1,0 +1,5 @@
+<div class="chart-wrapper">
+    <div>{{title}}</div>
+    <google-chart [type]="chartType" [data]="values" [options]="options" *ngIf="values.length > 0" class="chart"></google-chart>
+    <div class="chart-no-data" *ngIf="values.length === 0">No chart data</div>
+</div>

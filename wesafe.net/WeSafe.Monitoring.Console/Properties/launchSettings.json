@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WeSafe.Monitoring.Console": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+<div class="container-lg">
+    <h2 class="my-4">Client</h2>
+    <form #form="ngForm" (ngSubmit)="submit()" *ngIf="client">
+        <fieldset [disabled]="pending">
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Client name</label>
+                <div class="col-sm-10">
+                    <input type="text"
+                           #name="ngModel"
+                           name="name"
+                           [required]="true"
+                           [(ngModel)]="client.name"
+                           [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                           class="form-control"
+                           id="name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="phone" value="{{client.phone}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="cn" class="col-sm-2 col-form-label">Contract number</label>
+                <div class="col-sm-10">
+                    <input type="text"
+                           #cn="ngModel"
+                           name="cn"
+                           [(ngModel)]="client.contractNumber"
+                           [class.is-invalid]="cn.invalid && (cn.dirty || cn.touched)"
+                           class="form-control"
+                           id="cn">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="info" class="col-sm-2 col-form-label">Information</label>
+                <div class="col-sm-10">
+                    <input type="text"
+                           #info="ngModel"
+                           name="info"
+                           [(ngModel)]="client.info"
+                           [class.is-invalid]="info.invalid && (info.dirty || info.touched)"
+                           class="form-control"
+                           id="info">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dt" class="col-sm-2 col-form-label">Created at</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="dt" value="{{client.createdAt | date:'short'}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-10">
+                    <span class="badge badge-danger mx-1" *ngIf="!client.isActive">Inactive</span>
+                    <span class="badge badge-success mx-1" *ngIf="client.isActive">Active</span>
+                    <span class="badge badge-dark mx-1" *ngIf="client.token">Activated</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2"></label>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               #active="ngModel"
+                               name="sendToDevChat"
+                               [(ngModel)]="client.sendToDevChat"
+                               type="checkbox"
+                               id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Send to WeSafe chat
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-primary mr-2" [disabled]="form.form.invalid || pending">Save</button>
+                <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

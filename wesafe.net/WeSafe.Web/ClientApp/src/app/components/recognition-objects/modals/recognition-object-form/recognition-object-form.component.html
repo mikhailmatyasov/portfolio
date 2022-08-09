@@ -1,0 +1,39 @@
+<mat-dialog-content>
+    <div [formGroup]="formGroup">
+        <div class="d-flex justify-content-between">
+            <div>
+                <span class="title">{{data.create ? 'Create' : 'Edit'}} recognition object</span>
+            </div>
+            <div class="close-btn">
+                <mat-icon (click)="onNoClick()">close</mat-icon>
+            </div>
+        </div>
+        <input matInput
+               formControlName="name"
+               class="input-box"
+               type="text"
+               placeholder="Type new name"
+               autofocus
+        />
+
+        <input matInput
+               formControlName="description"
+               class="input-box"
+               type="text"
+               placeholder="Type description"
+               />
+
+        <label>
+            <input type="checkbox"
+                   formControlName="isActive"
+                   class="checkbox"
+            />
+            <span class="checkbox-label">Active</span>
+        </label>
+    </div>
+    <div>
+        <button mat-raised-button [mat-dialog-close]="formGroup.value" class="button button-text" [disabled]="formGroup.invalid">
+            Save
+        </button>
+    </div>
+</mat-dialog-content>

@@ -1,0 +1,35 @@
+<div class="container-fluid wrapper">
+    <div class="card">
+        <form #form="ngForm" (ngSubmit)="update()" *ngIf="settings">
+            <div class="form-group row my-1">
+                <div class="col-sm-2">
+                    <label for="storage" class="label">Log storage time</label>
+                    <input class="form-control"
+                           name="storage"
+                           type="number"
+                           [(ngModel)]="settings.keepingDeviceLogsDays"
+                           id="storage"
+                           required=""
+                    />
+                </div>
+                <div class="col-sm-2">
+                    <label for="event" class="label">Event storage time</label>
+                    <input class="form-control"
+                           name="event"
+                           type="number"
+                           [(ngModel)]="settings.keepingCameraLogsDays"
+                           id="event"
+                           required=""
+                    />
+                </div>
+                <div class="col-sm-8 align-self-end">
+                    <button class="btn btn-outline-primary"
+                            [disabled]="pending || form.form.invalid"
+                            (click)="update()">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

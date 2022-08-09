@@ -1,0 +1,46 @@
+
+.mat-dialog-container {
+    padding: 32px !important;
+
+    button {
+        margin-top: 16px;
+        float: right;
+    }
+
+    .title {
+        font-family: Roboto-Bold;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 28px;
+        color: #33325C;
+    }
+
+    .text {
+        font-family: Roboto-Regular;
+        font-size: 16px;
+        line-height: 19px;
+        color: #33325C;
+    }
+
+    .input-box {
+        font-size: 16px;
+        letter-spacing: 0.15px;
+        border: 1px solid #D5D8DF;
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding-left: 16px;
+        margin-top: 24px;
+        width: 100%;
+    }
+
+    .close-btn {
+        cursor: pointer;
+        margin-top: -17px;
+        margin-right: -20px;
+        color: #33325C;
+    }
+}
+
+.mat-dialog-content {
+    overflow: inherit !important;
+}

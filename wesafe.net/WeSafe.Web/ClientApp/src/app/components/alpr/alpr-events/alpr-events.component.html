@@ -1,0 +1,66 @@
+<div class="events">
+    <div class="title">ALPR</div>
+    <div class="card-body">
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label>Start Date</label>
+                <input (dateTimeChange)="startDateTimeChanged($event)" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                       class="form-control"
+                       placeholder="Start Date Time"
+                       [(ngModel)]="selectedStartDate">
+                <owl-date-time #dt1 hideOtherMonths="false"></owl-date-time>
+            </div>
+
+            <div class="col-sm-2">
+                <label>End Date</label>
+                <input class="form-control" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2"
+                       placeholder="End Date Time" (dateTimeChange)="endDateTimeChanged($event)">
+                <owl-date-time #dt2 hideOtherMonths="false"></owl-date-time>
+            </div>
+
+            <div class="col-sm-2">
+                <label>Plate number</label>
+                <input matInput
+                       #name="ngModel"
+                       placeholder="Plate number"
+                       [(ngModel)]="searchPlateNumber"
+                       name="name"
+                       type="text"
+                       class="input-box" />
+            </div>
+
+            <div class="col-sm-2">
+                <button class="btn btn-outline-primary" (click)="loadEvents()" style="margin-top: 14px">Filter events</button>
+            </div>
+        </div>
+        <div *ngIf="rows.length">
+            <div class="event mb-2" *ngFor="let event of rows">
+                <div class="form-group row">
+                    <h4 class="event-title">
+                        {{event.cameraName}} - {{event.plateNumberString}} ({{event.dateTime | date:'longDate'}})
+                    </h4>
+                    <span *ngIf="event.licensePlateType == null">
+                        <mat-icon style="color: green">done</mat-icon>
+                    </span>
+                    <span *ngIf="event.licensePlateType != null">
+                        <mat-icon style="color: red">clear</mat-icon>
+                    </span>
+                </div>
+
+                <p class="event-images">
+                    <img class="eventimage" style="max-height: 300px" [src]="event.frameImageUrl" />
+                    <img class="eventimage" [src]="event.plateNumberImageUrl" />
+                </p>
+            </div>
+        </div>
+        <div *ngIf="!rows.length">
+            <h3>No events found.</h3>
+        </div>
+
+        <mat-paginator [length]="page.total"
+                       [pageSize]="page.size"
+                       [pageSizeOptions]="pageSizeOptions"
+                       (page)="loadPage($event)">
+        </mat-paginator>
+    </div>
+</div>

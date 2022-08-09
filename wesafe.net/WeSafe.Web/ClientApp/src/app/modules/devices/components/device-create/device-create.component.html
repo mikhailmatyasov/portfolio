@@ -1,0 +1,7 @@
+<div class="container">
+    <h2 class="my-4">New device</h2>
+    <app-device-form [device]="device" [create]="true" (saved)="save($event)" (cancelled)="cancel()"></app-device-form>
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+        {{error}}
+    </div>
+</div>

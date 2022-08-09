@@ -1,0 +1,44 @@
+@import "~src/styles/mobile";
+
+:host {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    font-family: Roboto-Regular, sans-serif;
+    font-size: 20px;
+    line-height: 23px;
+    color: #FFFFFF;
+
+    @include mobile() {
+        font-size: 16px;
+        line-height: 18px;
+    }
+}
+
+.link {
+    color: #FFFFFF;
+    display: inline-block;
+    margin-right: 24px;
+}
+
+.logout {
+    cursor: pointer;
+
+    > img, > span {
+        vertical-align: middle;
+    }
+
+    > img {
+        margin-right: 8px;
+
+        @include mobile() {
+            margin-right: 0;
+        }
+    }
+
+    > span {
+        @include mobile() {
+            display: none;
+        }
+    }
+}

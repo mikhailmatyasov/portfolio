@@ -1,0 +1,14 @@
+<div class="container-fluid wrapper">
+    <div class="d-sm-flex mb-4">
+        <div class="d-flex flex-grow-1 device-dependencies device-dependency-camera">
+            <app-cameras-list style="width: 100%" [deviceId]="deviceId"></app-cameras-list>
+        </div>
+        <div class="flex-grow-1 device-dependencies device-dependency-users">
+            <div class="d-flex align-items-center mb-2">
+                <img src="\assets\images\event-icon.png" />
+                <span class="event-title">Last event</span>
+            </div>
+            <app-event [event]="lastEvent"></app-event>
+        </div>
+    </div>
+</div>

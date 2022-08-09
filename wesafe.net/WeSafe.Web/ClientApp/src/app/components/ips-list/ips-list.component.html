@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <h2 class="my-4">Ips</h2>
+    <div class="row">
+        <div class="col" *ngIf="!adding">
+            <button class="btn btn-outline-secondary" (click)="addIp()">Add ip</button>
+        </div>
+    </div>
+    <div *ngIf="adding">
+        <div class="my-4">
+            <input type="text"
+                   #ip="ngModel"
+                   [(ngModel)]="addedIp.ip"
+                   class="form-control col-sm-2"
+                   name="ip"
+                   mask="IP"
+                   placeholder="Ip"
+                   [dropSpecialCharacters]="false"
+                   [required]="true"
+                   [class.is-invalid]="ip.invalid && (ip.dirty || ip.touched)">
+
+            <button class="btn btn-link btn-sm" (click)="save()" [disabled]="!addedIp.ip">Add</button>
+            <button class="btn btn-link btn-sm" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+    <div class="table-responsive-md">
+        <table class="table table-sm my-3">
+            <tbody>
+                <tr *ngFor="let ip of ips">
+                    <td>{{ip.ip}}</td>
+                    <td>
+                        <div class="icon-btn" (click)="deleteIp(ip.id)">
+                            <app-icon-trash></app-icon-trash>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

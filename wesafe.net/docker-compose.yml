@@ -1,0 +1,98 @@
+version: '3.4'
+
+services:
+  wesafe.ui:
+    image: ${DOCKER_REGISTRY-}wesafeui
+    build:
+      context: .
+      dockerfile: WeSafe.Web/ClientApp/Dockerfile
+
+  wesafe.web:
+    image: ${DOCKER_REGISTRY-}wesafeweb
+    build:
+      context: .
+      dockerfile: WeSafe.Web/Dockerfile
+    environment:
+      - ConnectionStrings__DB_CONNECTION_STRING=User ID=wesafe;Password=123456;Host=db;Port=5432;Database=wesafe;Pooling=true;Command Timeout=300;
+      - PhysicalFileStorage__Root=/app/files
+      - PhysicalFileStorage__RequestPath=/files
+      - PhysicalFileStorage__BaseUrl=http://localhost:8080/
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/lib/wesafe-945da-firebase-adminsdk-lsfbl-4c9d04c89b.json
+    volumes:
+      - ./lib/records:/app/files/
+      - ./lib:/app/lib/
+    depends_on:
+      - db
+
+  wesafe.authentication.webapi:
+    image: ${DOCKER_REGISTRY-}wesafeauthenticationwebapi
+    build:
+      context: .
+      dockerfile: WeSafe.Authentication.WebApi/Dockerfile
+    environment:
+      - ConnectionStrings__DB_CONNECTION_STRING=User ID=wesafe;Password=123456;Host=db;Port=5432;Database=wesafe;Pooling=true;Command Timeout=300;
+      - ConnectionStrings__RabbitMQ=rabbitmq://rabbitmq/
+    depends_on:
+      - rabbitmq
+      - mongo
+      - db
+
+  wesafe.dashboard.webapi:
+    image: ${DOCKER_REGISTRY-}wesafedashboardwebapi
+    build:
+      context: .
+      dockerfile: WeSafe.Dashboard.WebApi/Dockerfile
+    environment:
+      - ConnectionStrings__DB_CONNECTION_STRING=User ID=wesafe;Password=123456;Host=db;Port=5432;Database=wesafe;Pooling=true;Command Timeout=300;
+      - ConnectionStrings__RabbitMQ=rabbitmq://rabbitmq/
+      - MongoDb__Connection=mongodb://root:example@mongo:27017
+      - MongoDb__DatabaseName=appDb
+      - MongoDb__CollectionName=registerCollection
+    depends_on:
+      - rabbitmq
+      - mongo
+      - db
+
+  db:
+    image: "postgres:10.9-alpine"
+    environment:
+      POSTGRES_USER: "wesafe"
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: "wesafe"
+    volumes:
+      - db-data-volume:/var/lib/postgresql/data
+    restart: always
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+    restart: always
+
+  nginx:
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./conf:/etc/nginx/conf.d/
+    depends_on:
+      - wesafe.web
+
+volumes:
+  db-data-volume:

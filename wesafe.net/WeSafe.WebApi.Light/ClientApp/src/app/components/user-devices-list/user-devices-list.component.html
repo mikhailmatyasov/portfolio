@@ -1,0 +1,49 @@
+<!--
+<div class="container-fluid wrapper">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Welcome to Device list</h1>
+        </div>
+    </div>
+    <div class="table-container">
+        <table mat-table [dataSource]="devices">
+            <mat-header-row *matHeaderRowDef="displayedColumns" class="table-header"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></mat-row>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef class="cell">Device name</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="cell"><a [routerLink]="['/devices/', element.id]"
+                                                       style="color: #367bf5;"> {{element.name}} </a></mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="macAddress">
+                <mat-header-cell *matHeaderCellDef class="cell">MAC address</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="cell">{{element.macAddress | mask: 'AA:AA:AA:AA:AA:AA'}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="hwVersion">
+                <mat-header-cell *matHeaderCellDef class="justify-content-center cell">HW version</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="justify-content-center cell">{{element.hwVersion}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="swVersion">
+                <mat-header-cell *matHeaderCellDef class="justify-content-center cell">SW version</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="justify-content-center cell">{{element.swVersion}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="token">
+                <mat-header-cell *matHeaderCellDef class="justify-content-center cell">Token</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="justify-content-center cell">{{element.token}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="assemblingDate">
+                <mat-header-cell *matHeaderCellDef class="justify-content-center cell">Assembling date</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="justify-content-center cell">{{element.assemblingDate | date:'shortDate'}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="activationDate">
+                <mat-header-cell *matHeaderCellDef class="justify-content-center cell">Activating date</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="justify-content-center cell">{{element.activationDate | date:'shortDate'}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="camerasNumber">
+                <mat-header-cell *matHeaderCellDef class="justify-content-center cell">Cameras</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="justify-content-center cell">{{element.camerasNumber}}</mat-cell>
+            </ng-container>
+        </table>
+    </div>
+</div>
+-->

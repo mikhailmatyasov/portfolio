@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Cameras</h5>
+    </div>
+    <ul class="list-group list-group-flush" *ngIf="cameras.length > 0">
+        <li class="list-group-item" *ngFor="let camera of cameras">
+            <div class="d-flex w-100 justify-content-between">
+                <div>
+                    <a [routerLink]="['/', 'device', camera.deviceId, 'cameras', camera.id]">{{camera.cameraName}}</a>
+                    <span class="badge badge-success ml-2" *ngIf="camera.status === 'ONLINE'">Online</span>
+                    <span class="badge badge-danger ml-2" *ngIf="camera.status === 'OFFLINE'">Offline</span>
+                    <span class="badge badge-dark ml-2" *ngIf="camera.status === null">No status</span>
+                </div>
+                <div>
+                    <a *ngIf="camera.lastImagePath" class="small mr-1" [routerLink]="['/', 'device', camera.deviceId, 'cameras', camera.id, 'roi']">Adjust ROI</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

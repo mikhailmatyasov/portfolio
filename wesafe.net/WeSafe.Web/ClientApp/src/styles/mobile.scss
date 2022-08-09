@@ -1,0 +1,14 @@
+$max-mobile-width: 576px;
+
+@mixin mobile() {
+    @media(max-width:$max-mobile-width) {
+        @content;
+    }
+}
+
+@mixin m-clean-margin-padding() {
+    @include mobile(){
+        margin:0 !important;
+        padding: 0 !important;
+    }
+}

@@ -1,0 +1,46 @@
+<div class="events">
+    <div class="title">Events</div>
+    <div class="card-body">
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label>Start Date</label>
+                <input (dateTimeChange)="startDateTimeChanged($event)" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                       class="form-control"
+                       placeholder="Start Date Time"
+                       [(ngModel)]="selectedStartDate">
+                <owl-date-time #dt1 hideOtherMonths="false"></owl-date-time>
+            </div>
+
+            <div class="col-sm-2">
+                <label>End Date</label>
+                <input class="form-control" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2"
+                       placeholder="End Date Time" (dateTimeChange)="endDateTimeChanged($event)">
+                <owl-date-time #dt2 hideOtherMonths="false"></owl-date-time>
+            </div>
+
+            <div class="col-sm-8">
+                <button class="btn btn-outline-primary" (click)="loadEvents()" style="margin-top: 14px">Filter events</button>
+            </div>
+        </div>
+
+        <div *ngIf="rows.length">
+            <div class="event mb-2" *ngFor="let event of rows">
+                <h4 class="event-title">{{event.time | date:'short'}} {{event.message}}</h4>
+                <p class="event-images">
+                    <img class="eventimage" [class.eventimage_small]="!entry.$toggle"
+                         [class.eventimage_full]="entry.$toggle" [src]="entry.imageUrl"
+                         *ngFor="let entry of event.entries" (click)="entry.$toggle = !entry.$toggle" />
+                </p>
+            </div>
+        </div>
+        <div *ngIf="!rows.length">
+            <h3>No events found.</h3>
+        </div>
+
+        <mat-paginator [length]="page.total"
+                       [pageSize]="page.size"
+                       [pageSizeOptions]="pageSizeOptions"
+                       (page)="loadPage($event)">
+        </mat-paginator>
+    </div>
+</div>
