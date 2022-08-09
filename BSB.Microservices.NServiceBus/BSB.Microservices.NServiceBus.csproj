@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net472</TargetFrameworks>
+    <Authors>Blue Sombrero</Authors>
+    <PackageIconUrl>https://s3.amazonaws.com/bsbproduction/images/icon_bluesombrero.jpg</PackageIconUrl>
+    <RepositoryUrl>https://bitbucket.org/bsbdevelopment/bsb.microservices.nservicebus</RepositoryUrl>
+    <PackageProjectUrl>https://bitbucket.org/bsbdevelopment/bsb.microservices.nservicebus</PackageProjectUrl>
+    <Version>2.0.1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>1.4.4.0</AssemblyVersion>
+    <SqlPersistenceGenerateScripts>false</SqlPersistenceGenerateScripts>
+    <Description />
+    <PackageReleaseNotes>
+      2.0.0 - net452 target deprecated, net472 target added
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\BSB.Microservices.NServiceBus.xml</DocumentationFile>
+    <NoWarn>1701;1702;CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BSB.Microservices.Consul" Version="4.1.6" />
+    <PackageReference Include="BSB.Microservices.Vault" Version="1.2.1" />
+    <PackageReference Include="NServiceBus.Autofac" Version="7.0.0" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="3.0.0" />
+    <PackageReference Include="NServiceBus.CustomChecks" Version="3.0.1" />
+    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="2.0.0" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="3.0.1" />
+    <PackageReference Include="NServiceBus.Metrics" Version="3.0.0" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="3.0.2" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.2.0" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.5.1" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="5.1.1" />
+    <PackageReference Include="NServiceBus.MicrosoftLogging" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BSB.Microservices.NServiceBus.Attributes\BSB.Microservices.NServiceBus.Attributes.csproj" />
+  </ItemGroup>
+  <Target Name="PostcompileScript" AfterTargets="Build" Condition=" '$(IsCrossTargetingBuild)' != 'true' AND ($(Configuration) == 'debug' OR $(Configuration) == 'DEBUG')">
+    <Exec Command="powershell –ExecutionPolicy Bypass .\Run-PostCompile.ps1 -configuration:$(Configuration) -projectName:&quot;$(AssemblyName)&quot; -nugetPath:&quot;C:\LocalNuget&quot; &gt; nul 2&gt; nul" />
+  </Target>
+</Project>
